@@ -49,4 +49,8 @@ create table folder(
 	teaid varchar(20)
 );
 
-
+insert into admin values('000000','0');
+insert into admin values('000001','1');
+insert into admin values('000002','2');
+insert into admin values('000003','3');
+commit;
