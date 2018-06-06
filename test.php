@@ -5,7 +5,7 @@
 	$dbe->conn();
 	if($dbe->conn){
 		//增加
-		$dbe->insert("insert into admin values('我是你爸爸','5')");	
+		//$dbe->insert("insert into admin values('我是你爸爸','5')");	
 		//更新	
 		//$dbe->update("update admin set  admid='666666' where admid='000000'");
 		//删除
