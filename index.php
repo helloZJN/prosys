@@ -49,15 +49,18 @@
 						</div>
 
 						<div class="form-group">
-							<input type="text" name="userid" id="userid" class="form-control input-lg" placeholder="请输入学工号">
+							<input type="text" name="userid" id="userid" class="form-control input-lg" 
+							placeholder="请输入学工号">
 						</div>
 
 						<div class="form-group">
-							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="请输入密码">
+							<input type="password" name="password" id="password" class="form-control input-lg" 
+							placeholder="请输入密码">
 						</div>
 
 						<div class="form-group">
-							<input id="login" type="submit" class="btn btn-default btn-lg btn-block" value="登录">
+							<input id="login" type="submit" class="btn btn-default btn-lg btn-block" 
+							value="登录">
 						</div>
 
 					</form>
@@ -76,11 +79,13 @@
 						</div>
 
 						<div class="form-group">
-							<input type="text" name="userid-register" id="userid-register" class="form-control input-lg" placeholder="请输入学工号">
+							<input type="text" name="userid-register" id="userid-register" class="form-control input-lg" 
+							placeholder="请输入学工号">
 						</div>
 
 						<div class="form-group">
-							<input type="text" name="name-register" id="name-register" class="form-control input-lg" placeholder="请输入姓名">
+							<input type="text" name="name-register" id="name-register" class="form-control input-lg" 
+							placeholder="请输入姓名">
 						</div>
 
 						<div class="form-group">
@@ -108,19 +113,10 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 
 		<script type="text/javascript">
-			// 验证需要演示登录，注册视图
-			if(window.location.search.indexOf('register') >= 0) {
-				$('#nav-menu').find('.nav .login').removeClass('active');
-				$('#nav-menu').find('.nav .register').addClass('active');
-				
-				$('#login-overview').css('display', 'none');
-				$('#register-overview').css('display', 'block');
-			}
 		
 			$(function() {
 				$('#nav-menu .login, #nav-menu .register').on('click', function() {
 					$(this).addClass('active').siblings().removeClass('active')
-	
 					var val = $(this).attr('value');
 					if (val == 'register') {
 						$('#register-overview').css('display', 'block');
@@ -182,21 +178,17 @@
 					init();
 				});
 		
-				var callback = "/nanolink/app/index.php";
+				//var callback = "/nanolink/app/index.php";
 				$("#login").click(function() {
-					var email = $("#userid").val();
-					if (!email) {
+					var userid = $("#userid").val();
+					if (!userid) {
 						$("#login-msg").css('visibility', 'visible');
 						$("#login-msg").html("用户名不能为空");
 						return false;
+					}else{
+						$("#login-msg").css('visibility', 'hidden');
 					}
-					var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
-					if(!reg.test(email)) {
-						$("#login-msg").css('visibility', 'visible');
-						$("#login-msg").html("邮件地址不合法");
-						$("#email").focus();
-						return false;
-					}
+					
 					
 					var password = $("#password").val();
 			
@@ -227,49 +219,17 @@
 		
 					return false;
 				});
-		
-				// 注册账号
-				// 验证密码强度
-				$("#password-register").keyup(function() {
-					var password = $("#password-register").val();
-			
-					if (password.length >= 6) {
-						$.ajax({
-							type: $("#register-form").attr("method"),
-							url: '../services/users/get-pwd-strength.php',
-							data: "password=" + password,
-					
-							success: function(res) {
-								$("#strength").css('display', 'block');
-								if (res >= 0 && res <= 2) {
-									$("#strength").attr('class', 'low');
-									$("#strength").html("低：尝试用大小写混合，以及特殊字符");
-									return false;
-								} else if (res >= 3 && res <= 5) {
-									$("#strength").attr('class', 'middle');
-									$("#strength").html("中：尝试用大小写混合，以及特殊字符");
-									return false;
-								} else {
-									$("#strength").attr('class', 'high');
-									$("#strength").html("高：请牢记您的密码");
-									return false;
-								}
-							}
-						});
-					} else {
-						$("#strength").attr('class', 'red');
-						$("#strength").html("密码长度不能少于6位");
-					}
-				});
-		
+
+
 				// 提交表单
 				$("#register").click(function() {
 					var email = $("#email-register").val();
 					var password = $("#password-register").val();
 					var confirmPassword = $("#confirm-password").val();
+
 					if (!password && !email) {
 						$("#register-msg").css('visibility', 'visible');
-						$("#register-msg").html("邮件或密码不能为空");
+						$("#register-msg").html("学工号或密码不能为空");
 						return false;
 					}
 			
@@ -306,21 +266,12 @@
 							}
 						}
 					});
-			
+		
 					return false;
 				});
 		
 			});
 		</script>
 		
-		<script>
-			var _hmt = _hmt || [];
-			(function() {
-			  var hm = document.createElement("script");
-			  hm.src = "https://hm.baidu.com/hm.js?8d9919453b9a1af92ad7e888ffd0cc12";
-			  var s = document.getElementsByTagName("script")[0]; 
-			  s.parentNode.insertBefore(hm, s);
-			})();
-		</script>
 	</body>
 </html>
