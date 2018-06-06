@@ -16,7 +16,7 @@ class Oracle_oci
 		$this->dbname=$dbname;
 	}
 	function conn(){
-		$this->conn = oci_connect($this->user, $this->pwd,$this->dbname);
+		$this->conn = oci_connect($this->user, $this->pwd,$this->dbname,'utf8');
 	}
 	function close(){
 		oci_close($this->conn);
