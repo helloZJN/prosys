@@ -16,13 +16,14 @@
 	<body>
 	<!-- 背景动画 -->
 		<div class="intro-video">
-			<video id="video" class="video" autoplay="autoplay" loop="loop" src="//qzonestyle.gtimg.cn/qz-proj/wy-pc-v2/static/img/web/top.webm">
+			<video id="video" class="video" autoplay="autoplay" loop="loop" src="imgs/top.webm">
 			</video>
 		</div>
 	<!-- LOGO -->
 		<div align="center">
-			<img src="imgs/logo.png" height="200">
+				<img src="imgs/logo.png" height="150">
 		</div>
+	
 		
 		<div class="container">
 			<nav id="nav-menu">
@@ -66,6 +67,7 @@
 					</form>
 				</div>
 			</div>
+	
 		<!-- </div> -->
 
 		<!-- <div class="container"> -->
@@ -192,30 +194,37 @@
 					
 					var password = $("#password").val();
 			
-					$.ajax({
-						//type: $("#login-form").attr("method"),
-						type: 'POST',
-						url: '../services/users/check-user.php',
-						data: "email="+email+"&password="+password,
-						success: function(html) {
-							if (html == "OK") {
-								if(callback){
-									window.location=callback;
-								}else{
-									window.location="../index.php";
-								}
+					if(password.length==0){
+						$("#login-msg").css('visibility', 'visible');
+						$("#login-msg").html("密码不能为空");
+						return false;
+					}else{
+						$("#login-msg").css('visibility', 'hidden');
+					}
+					// $.ajax({
+					// 	type: $("#login-form").attr("method"),
+					// 	type: 'POST',
+					// 	url: '../services/users/check-user.php',
+					// 	data: "email="+email+"&password="+password,
+					// 	success: function(html) {
+					// 		if (html == "OK") {
+					// 			if(callback){
+					// 				window.location=callback;
+					// 			}else{
+					// 				window.location="../index.php";
+					// 			}
 				
-								$("#login-msg").css('visibility', 'hidden');
-							} else {
-								$("#login-msg").css('visibility', 'visible');
-								$("#login-msg").html(html);
+					// 			$("#login-msg").css('visibility', 'hidden');
+					// 		} else {
+					// 			$("#login-msg").css('visibility', 'visible');
+					// 			$("#login-msg").html(html);
 							
-								setTimeout (function () {
-									$("#login-msg").css('visibility', 'hidden');
-								}, 10000);
-							}
-						}
-					});
+					// 			setTimeout (function () {
+					// 				$("#login-msg").css('visibility', 'hidden');
+					// 			}, 10000);
+					// 		}
+					// 	}
+					// });
 		
 					return false;
 				});
@@ -223,11 +232,11 @@
 
 				// 提交表单
 				$("#register").click(function() {
-					var email = $("#email-register").val();
+					var useridRegister = $("#userid-register").val();
 					var password = $("#password-register").val();
 					var confirmPassword = $("#confirm-password").val();
-
-					if (!password && !email) {
+					var nameRegister = $("#userid-register").val();
+					if (!password && !useridRegister) {
 						$("#register-msg").css('visibility', 'visible');
 						$("#register-msg").html("学工号或密码不能为空");
 						return false;
@@ -245,28 +254,7 @@
 						return false;
 					}
 			
-					$.ajax({
-						type: $("#register-form").attr("method"),
-						url: '../services/users/new-user.php',
-						data: "email="+email+"&password="+password+"&confirmPassword="+confirmPassword,
-				
-						success: function(html) {
-						if (html == "OK") {
-								alert("注册成功，请登录到邮箱激活账号");
-								window.location="./login.php";
 					
-								$("#register-msg").css('visibility', 'hidden');
-							} else {
-								$("#register-msg").css('visibility', 'visible');
-								$("#register-msg").html(html);
-						
-								setTimeout (function () {
-									$("#register-msg").css('visibility', 'hidden');
-								}, 10000);
-							}
-						}
-					});
-		
 					return false;
 				});
 		
