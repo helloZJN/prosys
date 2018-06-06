@@ -20,8 +20,8 @@
 		</video>
 	</div>
 	
-	<div align="center">
-		<img src="" height="">
+	<div style="padding-top: 50px">
+		
 	</div>
 	
 
@@ -45,7 +45,7 @@
 
 		<div class="row" id="login-overview">
 			<div class="col-xs-12 col-sm-12 col-md-12">
-				<form id="login-form" role="form" action="../services/users/check-user.php" method="post">
+				<form id="login-form" role="form" action="checkuser.php" method="post">
 					<div class="form-group">
 						<div id="login-msg" class="col-xs-12 col-sm-12 col-md-12 alert alert-warning">
 							警告：
@@ -81,7 +81,7 @@
 		<!-- <div class="container"> -->
 		<div class="row" id="register-overview">
 			<div class="col-xs-12 col-sm-12 col-md-12">
-				<form id="register-form" role="form" action="../services/users/check-user.php" method="post">
+				<form id="register-form" role="form" action="checkregister.php" method="post">
 					<div class="form-group">
 						<div id="register-msg" class="col-xs-12 col-sm-12 col-md-12 alert alert-warning">
 							警告：
@@ -97,7 +97,7 @@
 						<input type="text" name="name-register" id="name-register" class="form-control input-lg" 
 						placeholder="请输入姓名">
 					</div>
-					
+
 					<div class="form-group">
 						<input type="password" name="password-register" id="password-register" class="form-control input-lg" placeholder="请输入密码">
 					</div>
@@ -193,85 +193,106 @@
 					init();
 				});
 
-				//var callback = "/nanolink/app/index.php";
-				$("#login").click(function() {
-					var userid = $("#userid").val();
-					if (!userid) {
-						$("#login-msg").css('visibility', 'visible');
-						$("#login-msg").html("用户名不能为空");
-						return false;
-					}else{
-						$("#login-msg").css('visibility', 'hidden');
-					}
-					
-					
-					var password = $("#password").val();
-
-					if(password.length==0){
-						$("#login-msg").css('visibility', 'visible');
-						$("#login-msg").html("密码不能为空");
-						return false;
-					}else{
-						$("#login-msg").css('visibility', 'hidden');
-					}
-					// $.ajax({
-					// 	type: $("#login-form").attr("method"),
-					// 	type: 'POST',
-					// 	url: '../services/users/check-user.php',
-					// 	data: "email="+email+"&password="+password,
-					// 	success: function(html) {
-					// 		if (html == "OK") {
-					// 			if(callback){
-					// 				window.location=callback;
-					// 			}else{
-					// 				window.location="../index.php";
-					// 			}
-
-					// 			$("#login-msg").css('visibility', 'hidden');
-					// 		} else {
-					// 			$("#login-msg").css('visibility', 'visible');
-					// 			$("#login-msg").html(html);
-
-					// 			setTimeout (function () {
-					// 				$("#login-msg").css('visibility', 'hidden');
-					// 			}, 10000);
-					// 		}
-					// 	}
-					// });
-
+			$("#login").click(function() {
+				var userid = $("#userid").val();
+				if (!userid) {
+					$("#login-msg").css('visibility', 'visible');
+					$("#login-msg").html("学工号不能为空");
 					return false;
-				});
+				}else{
+					$("#login-msg").css('visibility', 'hidden');
+				}
 
+				var password = $("#password").val();
 
-				// 提交表单
-				$("#register").click(function() {
-					var useridRegister = $("#userid-register").val();
-					var password = $("#password-register").val();
-					var confirmPassword = $("#confirm-password").val();
-					var nameRegister = $("#userid-register").val();
-					if (!password && !useridRegister) {
-						$("#register-msg").css('visibility', 'visible');
-						$("#register-msg").html("学工号或密码不能为空");
-						return false;
-					}
-
-					if(password.length < 6) {
-						$("#register-msg").css('visibility', 'visible');
-						$("#register-msg").html("密码长度不能少于6位");
-						return false;
-					}
-
-					if (password != confirmPassword) {
-						$("#register-msg").css('visibility', 'visible');
-						$("#register-msg").html("密码不一致,请确认");
-						return false;
-					}
-
-					
+				if(password.length==0){
+					$("#login-msg").css('visibility', 'visible');
+					$("#login-msg").html("密码不能为空");
 					return false;
-				});
+				}else{
+					$("#login-msg").css('visibility', 'hidden');
+				}
+
+
 
 			});
+
+
+			$("#userid-register").keyup(function() {
+				var useridRegister = $("#userid-register").val();
+				//alert(useridRegister);
+				$.ajax({
+					type: "POST",
+					url: "checkid.php",
+					data: {useridRegister:useridRegister},
+					success: function(res) {
+						$("#register-msg").css('visibility', 'visible');
+						
+
+
+						$("#register-msg").html(res);
+						
+					}
+				});
+				
+			});
+
+			
+			// 提交表单
+			$("#register").click(function() {
+				var useridRegister = $("#userid-register").val();
+				var password = $("#password-register").val();
+				var confirmPassword = $("#confirm-password").val();
+				var nameRegister = $("#userid-register").val();
+				if (!password && !useridRegister) {
+					$("#register-msg").css('visibility', 'visible');
+					$("#register-msg").html("学工号或密码不能为空");
+					return false;
+				}
+
+				if(password.length < 6) {
+					$("#register-msg").css('visibility', 'visible');
+					$("#register-msg").html("密码长度不能少于6位");
+					return false;
+				}
+				if (nameRegister.length==0) {
+					$("#register-msg").css('visibility', 'visible');
+					$("#register-msg").html("姓名不能为空");
+					return false;
+				}
+				if (password != confirmPassword) {
+					$("#register-msg").css('visibility', 'visible');
+					$("#register-msg").html("密码不一致,请确认");
+					return false;
+				}
+				//待修改
+				$.ajax({   
+					type: "POST",    
+					url: "checkregister",    
+					data: {useridRegister:useridRegister, password:password,nameRegister:nameRegister},
+					dataType: "json",
+					success: function(data){    
+						if(data==1){    
+			            // 用户名或密码错误    
+			            alert("用户名或密码错误");    
+			        }else if(data==2){    
+			        	alert("验证码错误");    
+				            // 验证码错误    
+				        }else if(data==0){    
+				        	window.location.href="index";    
+				        	//跳转页面 
+				        }    
+				    },    
+				    error:function(XMLHttpRequest, textStatus, errorThrown){//请求失败时调用此函数    
+				    	console.log(XMLHttpRequest.status);    
+				    	console.log(XMLHttpRequest.readyState);    
+				    	console.log(textStatus);                                
+				    }    
+				});    
+
+			});
+
+		});
 		</script>
 		
 	</body>
