@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
@@ -11,19 +12,20 @@
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/index.css" rel="stylesheet">
+		
 	</head>
 
 	<body>
-	<!-- 背景动画 -->
+
 		<div class="intro-video">
 			<video id="video" class="video" autoplay="autoplay" loop="loop" src="//qzonestyle.gtimg.cn/qz-proj/wy-pc-v2/static/img/web/top.webm">
 			</video>
 		</div>
-	<!-- LOGO -->
+
 		<div align="center">
 			<img src="imgs/logo.png" height="200">
 		</div>
-		
+
 		<div class="container">
 			<nav id="nav-menu">
 				<ul class="nav nav-pills">
@@ -49,17 +51,27 @@
 						</div>
 
 						<div class="form-group">
-							<input type="text" name="userid" id="userid" class="form-control input-lg" placeholder="请输入学工号">
+							<input type="email" name="email" id="email" class="form-control input-lg" placeholder="请输入邮箱地址">
 						</div>
 
 						<div class="form-group">
 							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="请输入密码">
 						</div>
 
+						<span class="button-checkbox sr-only">
+							<button type="button" class="btn" data-color="info">
+								记住
+							</button>
+							<input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+						</span>
+
 						<div class="form-group">
 							<input id="login" type="submit" class="btn btn-default btn-lg btn-block" value="登录">
 						</div>
 
+						<div class="form-group">
+							<a href="./forgot-password.php" class="forgot-password pull-right">忘记密码</a>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -76,15 +88,12 @@
 						</div>
 
 						<div class="form-group">
-							<input type="text" name="userid-register" id="userid-register" class="form-control input-lg" placeholder="请输入学工号">
-						</div>
-
-						<div class="form-group">
-							<input type="text" name="name-register" id="name-register" class="form-control input-lg" placeholder="请输入姓名">
+							<input type="email" name="email-register" id="email-register" class="form-control input-lg" placeholder="请输入邮箱地址">
 						</div>
 
 						<div class="form-group">
 							<input type="password" name="password-register" id="password-register" class="form-control input-lg" placeholder="请输入密码">
+							<span id="strength" class="low">低</span>
 						</div>
 
 						<div class="form-group">
@@ -184,21 +193,23 @@
 		
 				var callback = "/nanolink/app/index.php";
 				$("#login").click(function() {
-					var email = $("#userid").val();
-					if (!email) {
+					var userid = $("#userid").val();
+					if (!userid) {
 						$("#login-msg").css('visibility', 'visible');
-						$("#login-msg").html("用户名不能为空");
+						$("#login-msg").html("学号不能为空");
 						return false;
-					}
-					var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
-					if(!reg.test(email)) {
-						$("#login-msg").css('visibility', 'visible');
-						$("#login-msg").html("邮件地址不合法");
-						$("#email").focus();
-						return false;
+					}else{
+						$("#login-msg").css('visibility', 'hidden');
 					}
 					
 					var password = $("#password").val();
+					if (!password) {
+						$("#login-msg").css('visibility', 'visible');
+						$("#login-msg").html("密码不能为空");
+						return false;
+					}else{
+						$("#login-msg").css('visibility', 'hidden');
+					}
 			
 					$.ajax({
 						//type: $("#login-form").attr("method"),
@@ -232,31 +243,7 @@
 				// 验证密码强度
 				$("#password-register").keyup(function() {
 					var password = $("#password-register").val();
-			
-					if (password.length >= 6) {
-						$.ajax({
-							type: $("#register-form").attr("method"),
-							url: '../services/users/get-pwd-strength.php',
-							data: "password=" + password,
-					
-							success: function(res) {
-								$("#strength").css('display', 'block');
-								if (res >= 0 && res <= 2) {
-									$("#strength").attr('class', 'low');
-									$("#strength").html("低：尝试用大小写混合，以及特殊字符");
-									return false;
-								} else if (res >= 3 && res <= 5) {
-									$("#strength").attr('class', 'middle');
-									$("#strength").html("中：尝试用大小写混合，以及特殊字符");
-									return false;
-								} else {
-									$("#strength").attr('class', 'high');
-									$("#strength").html("高：请牢记您的密码");
-									return false;
-								}
-							}
-						});
-					} else {
+					if (password.length < 6) {
 						$("#strength").attr('class', 'red');
 						$("#strength").html("密码长度不能少于6位");
 					}
@@ -264,12 +251,12 @@
 		
 				// 提交表单
 				$("#register").click(function() {
-					var email = $("#email-register").val();
+					var userid-register = $("#userid-register").val();
 					var password = $("#password-register").val();
 					var confirmPassword = $("#confirm-password").val();
-					if (!password && !email) {
+					if (!password && !) {
 						$("#register-msg").css('visibility', 'visible');
-						$("#register-msg").html("邮件或密码不能为空");
+						$("#register-msg").html("学号或密码不能为空");
 						return false;
 					}
 			
@@ -322,5 +309,8 @@
 			  s.parentNode.insertBefore(hm, s);
 			})();
 		</script>
+
+		
+
 	</body>
 </html>

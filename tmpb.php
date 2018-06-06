@@ -10,19 +10,191 @@
 
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/index.css" rel="stylesheet">
+
+		<style type="text/css">
+			html {
+				width: 100%;
+				height: 100%;
+			}
+			body {
+				background-color: #36679c;
+				overflow: hidden;
+			}
+			@media (max-width: 768px) {
+				body {
+					background-color: #ffffff;
+				}
+			}
+			
+			.btn:focus,
+			input:focus {
+				outline: none;
+				border: none;
+			}
+			
+			.padding-line {
+				height: 1px;
+				margin-top: 150px;
+				/*background-color: #506776;*/
+				margin-left: -5%;
+				margin-right: -5%;
+			}
+			.container {
+				max-width: 480px;
+				border-radius: 4px;
+				background-color: #ffffff;
+			}
+			
+			#nav-menu {
+				height: 48px;
+				max-width: 480px;
+				margin-left: -15px;
+				margin-right: -15px;
+				padding-left: 10%;
+				padding-right: 10%;
+				background-color: #fafafa;
+				border-radius: 4px;
+			}
+			#nav-menu ul li {
+				line-height: 48px;
+				text-align: center;
+				font-size: 16px;
+				margin: 0;
+				color: #868d9b;
+			}
+			#nav-menu .login {
+				width: 44%;
+			}
+			#nav-menu .divider {
+				width: 10%;
+				color: #dde1e7;
+			}
+			#nav-menu .register {
+				width: 44%;
+			}
+			#nav-menu .active {
+				color: #4d95fb;
+				border-bottom: 2px solid #4d95fb;
+			}
+			#login-overview,
+			#register-overview {
+				padding: 8% 0px;
+			}
+			#login-msg,
+			#register-msg {
+				/*display: none;*/
+				visibility: hidden;
+				margin-bottom: 10px;
+				/*text-indent: -999px;*/
+			}
+			.container .alert-warning {
+				border: none;
+				background-color: #fee8e8;
+				font-size: 12px;
+				color: #d15a5a;
+				padding: 10px 15px;
+				border-radius: 2px;
+				/*text-align: center;*/
+			}
+			.container form input {
+				height: 50px;
+				color: #cacdd3;
+				background-color: #ffffff;
+				border: 1px solid #dde1e7;
+				border-radius: 2px;
+				font-size: 16px;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+				-webkit-appearance: none;
+				outline: none;
+			}
+			.container form input:hover,
+			.container form input:focus {
+				border: 1px solid #9ba1ac;
+				color: #7b8392;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+				-webkit-appearance: none;
+				outline: none;
+			}
+			input:-webkit-autofill {
+				-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+				-webkit-text-fill-color: #7b8392;
+			}
+			.container form input.btn {
+				background-color: #4d95fb;
+				color: #ffffff;
+				border: 0;
+			}
+			.container form input.btn:hover,
+			.container form input.btn:focus,
+			.container form input.btn:active,
+			.container form input.btn:visited {
+				background-color: #64a3fd;
+				color: #c2dafe;
+				border: none;
+				outline: none;
+			}
+			.container .forgot-password {
+				color: #868d9b;
+				font-size: 14px;
+				margin-top: -10px;
+				/*text-decoration: underline;*/
+			}
+			.container .forgot-password:hover,
+			.container .forgot-password:focus,
+			.container .forgot-password:active,
+			.container .forgot-password:visited {
+				text-decoration: none;
+			}
+			.container .form-group {
+				margin-bottom: 20px;
+				width: 100%;
+			}
+			.container .form-group:first-child {
+				margin-bottom: 0;
+			}
+			.container .form-group:nth-child(2) {
+				display: inline-block;
+			}
+			#login-overview {
+				/*display: none;*/
+			}
+			#register-overview {
+				display: none;
+				/*
+				 position: absolute;
+				 top: 0;
+				 width: 100%;
+				 margin-top: 33%;
+				 right: 100%;
+				 */
+			}
+			#strength {
+				display: none;
+				position: absolute;
+				font-size: 12px;
+				line-height: 18px;
+			}
+			.red {
+				color: #fb4738;
+			}
+			.low {
+				color: #fecf71;
+			}
+			.middle {
+				color: #669ae1;
+			}
+			.high {
+				color: #61d01c;
+			}
+			
+		</style>
 	</head>
 
 	<body>
-	<!-- 背景动画 -->
-		<div class="intro-video">
-			<video id="video" class="video" autoplay="autoplay" loop="loop" src="//qzonestyle.gtimg.cn/qz-proj/wy-pc-v2/static/img/web/top.webm">
-			</video>
-		</div>
-	<!-- LOGO -->
-		<div align="center">
-			<img src="imgs/logo.png" height="200">
-		</div>
+		<!-- 用于PC端 增大上边距 -->
+		<div class="padding-line visible-md visible-lg"></div>
 		
 		<div class="container">
 			<nav id="nav-menu">
@@ -49,17 +221,27 @@
 						</div>
 
 						<div class="form-group">
-							<input type="text" name="userid" id="userid" class="form-control input-lg" placeholder="请输入学工号">
+							<input type="email" name="email" id="email" class="form-control input-lg" placeholder="请输入邮箱地址">
 						</div>
 
 						<div class="form-group">
 							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="请输入密码">
 						</div>
 
+						<span class="button-checkbox sr-only">
+							<button type="button" class="btn" data-color="info">
+								记住
+							</button>
+							<input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+						</span>
+
 						<div class="form-group">
 							<input id="login" type="submit" class="btn btn-default btn-lg btn-block" value="登录">
 						</div>
 
+						<div class="form-group">
+							<a href="./forgot-password.php" class="forgot-password pull-right">忘记密码</a>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -76,15 +258,12 @@
 						</div>
 
 						<div class="form-group">
-							<input type="text" name="userid-register" id="userid-register" class="form-control input-lg" placeholder="请输入学工号">
-						</div>
-
-						<div class="form-group">
-							<input type="text" name="name-register" id="name-register" class="form-control input-lg" placeholder="请输入姓名">
+							<input type="email" name="email-register" id="email-register" class="form-control input-lg" placeholder="请输入邮箱地址">
 						</div>
 
 						<div class="form-group">
 							<input type="password" name="password-register" id="password-register" class="form-control input-lg" placeholder="请输入密码">
+							<span id="strength" class="low">低</span>
 						</div>
 
 						<div class="form-group">
@@ -184,7 +363,7 @@
 		
 				var callback = "/nanolink/app/index.php";
 				$("#login").click(function() {
-					var email = $("#userid").val();
+					var email = $("#email").val();
 					if (!email) {
 						$("#login-msg").css('visibility', 'visible');
 						$("#login-msg").html("用户名不能为空");
