@@ -221,7 +221,6 @@
 				}else{
 					$("#login-msg").css('visibility', 'hidden');
 				}
-<<<<<<< HEAD
 				$.ajax({
 					type: "POST",
 					url: "checkuser.php",
