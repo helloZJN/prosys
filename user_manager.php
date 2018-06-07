@@ -7,6 +7,7 @@
 	$stulines=100;
 ?>
 <h1 class="page-header" id="pageheader">用户管理</h1>
+<!-- 老师管理 -->
 <div class="row">     
 	<div class="col-md-6">
 		<div class="panel panel-primary">
@@ -125,23 +126,33 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+        <h4 class="modal-title" id="exampleModalLabel">信息修改</h4>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
+		<form class="form-horizontal">
+		  <div class="form-group">
+		    <label for="userid" class="col-sm-2 control-label">学工号</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="userid" placeholder="请输入你的学工号" disabled="true">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="username" class="col-sm-2 control-label">姓名</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="username" placeholder="请输入你的姓名">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="userpwd" class="col-sm-2 control-label">密码</label>
+		    <div class="col-sm-10">
+		      <input type="password" class="form-control" id="userpwd" placeholder="密码">
+		    </div>
+		  </div>
+		</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">修改</button>
       </div>
     </div>
   </div>
@@ -149,39 +160,40 @@
 <script type="text/javascript">
 	function updatetea(e){
 		var index=e.id;
+		var teaid='#teaid'+e.id;
+		teaid=$(teaid).text();
 		var teaname='#teaname'+e.id;
 		teaname=$(teaname).text();
-		var title='#title'+e.id;
-		title=$(title).text();
-		var content='#content'+e.id;
-		content=$(content).text();
-		var infotime='#infotime'+e.id;
-		infotime=$(infotime).text();
+		var teapwd='#teapwd'+e.id;
+		teapwd=$(teapwd).text();
+		$("#userid").val(teaid);
+		$("#username").val(teaname);
+		$("#userpwd").val(teapwd);
+		// 
+		// $("#notice-user-date").html(teaname+"&nbsp;&nbsp;日期:"+infotime);
+		// $("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;"+content);
 
-		$("#myModalLabel").text(title);
-		$("#notice-user-date").html(teaname+"&nbsp;&nbsp;日期:"+infotime);
-		$("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;"+content);
-
-		$('#myModal').modal({
+		$('#updateModal').modal({
             keyboard: true
         });
 	}
 	function updatestu(e){
 		var index=e.id-100;
-		var teaname='#'+e.id;
-		teaname=$(teaname).text();
-		var title='#title'+e.id;
-		title=$(title).text();
-		var content='#content'+e.id;
-		content=$(content).text();
-		var infotime='#infotime'+e.id;
-		infotime=$(infotime).text();
+		var stuid='#stuid'+e.id;
+		stuid=$(stuid).text();
+		var stuname='#stuname'+e.id;
+		stuname=$(stuname).text();
+		var stupwd='#stupwd'+e.id;
+		stupwd=$(stupwd).text();
+		$("#userid").val(stuid);
+		$("#username").val(stuname);
+		$("#userpwd").val(stupwd);
 
-		$("#myModalLabel").text(title);
-		$("#notice-user-date").html(teaname+"&nbsp;&nbsp;日期:"+infotime);
-		$("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;"+content);
+		// $("#myModalLabel").text(title);
+		// $("#notice-user-date").html(teaname+"&nbsp;&nbsp;日期:"+infotime);
+		// $("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;"+content);
 
-		$('#myModal').modal({
+		$('#updateModal').modal({
             keyboard: true
         });
 	}
