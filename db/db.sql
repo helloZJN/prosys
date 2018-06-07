@@ -14,7 +14,7 @@ create table student(
 	email varchar(20),
 	password varchar(20)
 );
-create table teacher(
+create table teacher_info(
 	teaid varchar(20),
 	teaname varchar(20),
 	email varchar(20),
@@ -30,7 +30,8 @@ create table info(
 	teaid varchar(20),
 	title varchar(50),
 	content varchar(300),
-	infotime date
+	infotime date,
+	readtimes int
 );
 create table stufile(
 	fileid varchar(20),
@@ -54,3 +55,26 @@ insert into admin values('000001','1');
 insert into admin values('000002','2');
 insert into admin values('000003','3');
 commit;
+insert into info values('1','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('2','lh','0000','关于张晋男小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('3','lh','0000','关于童冰小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('4','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('5','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+	insert into info values('2','lh','0000','关于张晋男小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('3','lh','0000','关于童冰小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('4','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('5','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+//老师
+insert into teacher_info (teaid,teaname,password) values('123456','李华','123456');
+insert into teacher_info (teaid,teaname,password) values('111111','李发','123456');
+insert into teacher_info (teaid,teaname,password) values('222222','李啊','123456');
+insert into teacher_info (teaid,teaname,password) values('333333','李来','123456');
+insert into teacher_info (teaid,teaname,password) values('444444','李有','123456');
+insert into teacher_info (teaid,teaname,password) values('555555','李怕','123456');
+//学生
+insert into student (stuid,stuname,password) values('123456','王华','123456');
+insert into student (stuid,stuname,password) values('111111','王发','123456');
+insert into student (stuid,stuname,password) values('222222','王啊','123456');
+insert into student (stuid,stuname,password) values('333333','王来','123456');
+insert into student (stuid,stuname,password) values('444444','王有','123456');
+insert into student (stuid,stuname,password) values('555555','王怕','123456');

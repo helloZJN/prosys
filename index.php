@@ -51,6 +51,7 @@
 							警告：
 						</div>
 					</div>
+<<<<<<< HEAD
 					<div class="form-group">
 						<select class="form-control" name="user-select" id="user-select">
 							<option value="1">我是学生</option>
@@ -58,6 +59,8 @@
 							<option value="3">我是管理员</option>
 						</select>
 					</div>
+=======
+>>>>>>> 4755a323ce90615ad71d5294799b4a0180ab4fdc
 
 					<div class="form-group">
 						<input type="text" name="userid" id="userid" class="form-control input-lg" 
@@ -68,7 +71,12 @@
 						<input type="password" name="password" id="password" class="form-control input-lg" 
 						placeholder="请输入密码">
 					</div>
-					
+					<div class="form-group">
+						<select class="form-control">
+							<option name="user-select" value="1">我是学生</option>
+							<option name="user-select" value="2">我是老师</option>
+						</select>
+					</div>
 					<div class="form-group">
 						<button id="login" type="button" class="btn btn-default btn-lg btn-block">登录</button>
 					</div>
@@ -85,14 +93,6 @@
 						<div id="register-msg" class="col-xs-12 col-sm-12 col-md-12 alert alert-warning">
 							警告：
 						</div>
-					</div>
-					
-					<div class="form-group">
-						<select class="form-control" id="user-select-register" 
-						name="user-select-register">
-							<option value="stu">我是学生</option>
-							<option value="tea">我是老师</option>
-						</select>
 					</div>
 
 					<div class="form-group">
@@ -113,7 +113,12 @@
 					<div class="form-group">
 						<input type="password" name="confirm-password" id="confirm-password" class="form-control input-lg" placeholder="确认密码">
 					</div>
-					
+					<div class="form-group">
+						<select class="form-control">
+							<option name="user-select" value="1">我是学生</option>
+							<option name="user-select" value="2">我是老师</option>
+						</select>
+					</div>
 					<div class="form-group">
 						<button id="register" type="button" class="btn btn-lg btn-primary btn-block" value="注册">注册</button>
 					</div>
@@ -195,7 +200,7 @@
 
 					init();
 				});
-			//登录 检查学工号和密码是否为空
+
 			$("#login").click(function() {
 				var userid = $("#userid").val();
 				var password = $("#password").val();
@@ -216,6 +221,7 @@
 				}else{
 					$("#login-msg").css('visibility', 'hidden');
 				}
+<<<<<<< HEAD
 				$.ajax({
 					type: "POST",
 					url: "checkuser.php",
@@ -233,52 +239,60 @@
 						}
 					}
 				});
+=======
+
+
+
+>>>>>>> 4755a323ce90615ad71d5294799b4a0180ab4fdc
 			});
 
-			//注册 判断id是否存在
+
 			$("#userid-register").keyup(function() {
 				var useridRegister = $("#userid-register").val();
-				var userSelect = $("#user-select-register").val();
-				if(useridRegister.length==0){
-					$("#register-msg").css('visibility', 'visible');
-					$("#register-msg").html("学工号不能为空");
-					return false;
-				}
+				//alert(useridRegister);
 				$.ajax({
 					type: "POST",
 					url: "checkid.php",
+<<<<<<< HEAD
 					data: {useridRegister:useridRegister,
 						userSelect:userSelect},
+=======
+					data: {useridRegister:useridRegister},
+>>>>>>> 4755a323ce90615ad71d5294799b4a0180ab4fdc
 					success: function(res) {
-						if(res=="n"){
-							$("#register-msg").css('visibility', 'visible');
-							$("#register-msg").html("学工号已存在");
-						}else if(res=="y"){
-							$("#register-msg").css('visibility', 'hidden');
-						}else{
-							alert(res);
-						}
+						$("#register-msg").css('visibility', 'visible');
+						$("#register-msg").html(res);
+						
 					}
 				});
 				
 			});
 
 			
-			//注册 判断为空 和 注册成功
+			// 提交表单
 			$("#register").click(function() {
 				var useridRegister = $("#userid-register").val();
-				var passwordRegister = $("#password-register").val();
+				var password = $("#password-register").val();
 				var confirmPassword = $("#confirm-password").val();
+<<<<<<< HEAD
 				var nameRegister = $("#name-register").val();
 				var userSelect = $("#user-select-register").val();
 				
 				if (!useridRegister) {
+=======
+				var nameRegister = $("#userid-register").val();
+				if (!password && !useridRegister) {
+>>>>>>> 4755a323ce90615ad71d5294799b4a0180ab4fdc
 					$("#register-msg").css('visibility', 'visible');
 					$("#register-msg").html("学工号不能为空");
 					return false;
 				}
 
+<<<<<<< HEAD
 				if(passwordRegister.length < 1) {
+=======
+				if(password.length < 6) {
+>>>>>>> 4755a323ce90615ad71d5294799b4a0180ab4fdc
 					$("#register-msg").css('visibility', 'visible');
 					$("#register-msg").html("密码长度不能少于6位");
 					return false;
@@ -288,13 +302,14 @@
 					$("#register-msg").html("姓名不能为空");
 					return false;
 				}
-				if (passwordRegister != confirmPassword) {
+				if (password != confirmPassword) {
 					$("#register-msg").css('visibility', 'visible');
 					$("#register-msg").html("密码不一致,请确认");
 					return false;
 				}
 				$.ajax({
 					type: "POST",    
+<<<<<<< HEAD
 					url: "checkregister.php",    
 					data: {useridRegister:useridRegister, 
 						passwordRegister:passwordRegister,
@@ -304,6 +319,30 @@
 						alert(data);  
 					}
 				}); 
+=======
+					url: "checkregister",    
+					data: {useridRegister:useridRegister, password:password,nameRegister:nameRegister},
+					dataType: "json",
+					success: function(data){    
+						if(data==1){    
+			            // 用户名或密码错误    
+			            alert("用户名或密码错误");    
+			        }else if(data==2){    
+			        	alert("验证码错误");    
+				            // 验证码错误    
+				        }else if(data==0){    
+				        	window.location.href="index";    
+				        	//跳转页面 
+				        }    
+				    },    
+				    error:function(XMLHttpRequest, textStatus, errorThrown){//请求失败时调用此函数    
+				    	console.log(XMLHttpRequest.status);    
+				    	console.log(XMLHttpRequest.readyState);    
+				    	console.log(textStatus);                                
+				    }    
+				});    
+
+>>>>>>> 4755a323ce90615ad71d5294799b4a0180ab4fdc
 			});
 
 		});

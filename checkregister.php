@@ -1,4 +1,5 @@
 <?php 
+<<<<<<< HEAD
 	$useridRegister=$_POST['useridRegister'];
 	$nameRegister=$_POST['nameRegister'];
 	$passwordRegister=$_POST['passwordRegister'];
@@ -27,3 +28,9 @@
 		echo "数据库连接失败";
 	}
 ?>
+=======
+	$useridRegister=$_POST['userid-register'];
+	$nameRegister=$_POST['name-register'];
+	$passwordRegister=$_POST[]
+ ?>
+>>>>>>> 4755a323ce90615ad71d5294799b4a0180ab4fdc
