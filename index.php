@@ -52,10 +52,10 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<select class="form-control">
-							<option name="user-select" value="1">我是学生</option>
-							<option name="user-select" value="2">我是老师</option>
-							<option name="user-select" value="3">我是管理员</option>
+						<select class="form-control" name="user-select" id="user-select">
+							<option value="1">我是学生</option>
+							<option value="2">我是老师</option>
+							<option value="3">我是管理员</option>
 						</select>
 					</div>
 
@@ -70,15 +70,12 @@
 					</div>
 					
 					<div class="form-group">
-						<input id="login" type="submit" class="btn btn-default btn-lg btn-block" 
-						value="登录">
+						<button id="login" type="button" class="btn btn-default btn-lg btn-block">登录</button>
 					</div>
 
 				</form>
 			</div>
 		</div>
-
-		<!-- </div> -->
 
 		<!-- <div class="container"> -->
 		<div class="row" id="register-overview">
@@ -109,7 +106,8 @@
 					</div>
 
 					<div class="form-group">
-						<input type="password" name="password-register" id="password-register" class="form-control input-lg" placeholder="请输入密码">
+						<input type="password" name="password-register" 
+						id="password-register" class="form-control input-lg" placeholder="请输入密码">
 					</div>
 
 					<div class="form-group">
@@ -117,7 +115,7 @@
 					</div>
 					
 					<div class="form-group">
-						<input id="register" type="submit" class="btn btn-lg btn-primary btn-block" value="注册">
+						<button id="register" type="button" class="btn btn-lg btn-primary btn-block" value="注册">注册</button>
 					</div>
 				</form>
 			</div>
@@ -200,6 +198,9 @@
 			//登录 检查学工号和密码是否为空
 			$("#login").click(function() {
 				var userid = $("#userid").val();
+				var password = $("#password").val();
+				var userSelect = $("#user-select").val();
+
 				if (!userid) {
 					$("#login-msg").css('visibility', 'visible');
 					$("#login-msg").html("学工号不能为空");
@@ -208,8 +209,6 @@
 					$("#login-msg").css('visibility', 'hidden');
 				}
 
-				var password = $("#password").val();
-
 				if(password.length==0){
 					$("#login-msg").css('visibility', 'visible');
 					$("#login-msg").html("密码不能为空");
@@ -217,6 +216,23 @@
 				}else{
 					$("#login-msg").css('visibility', 'hidden');
 				}
+				$.ajax({
+					type: "POST",
+					url: "checkuser.php",
+					data: {userid:userid,
+						password:password,
+						userSelect:userSelect},
+					success: function(res) {
+						if(res=="n"){
+							$("#register-msg").css('visibility', 'visible');
+							$("#register-msg").html("账号或密码错误");
+						}else if(res=="y"){
+							$("#register-msg").css('visibility', 'hidden');
+						}else{
+							alert(res);
+						}
+					}
+				});
 			});
 
 			//注册 判断id是否存在
@@ -231,7 +247,8 @@
 				$.ajax({
 					type: "POST",
 					url: "checkid.php",
-					data: {useridRegister:useridRegister,userSelect:userSelect},
+					data: {useridRegister:useridRegister,
+						userSelect:userSelect},
 					success: function(res) {
 						if(res=="n"){
 							$("#register-msg").css('visibility', 'visible');
@@ -252,15 +269,16 @@
 				var useridRegister = $("#userid-register").val();
 				var passwordRegister = $("#password-register").val();
 				var confirmPassword = $("#confirm-password").val();
-				var nameRegister = $("#userid-register").val();
+				var nameRegister = $("#name-register").val();
 				var userSelect = $("#user-select-register").val();
-				if (!passwordRegister && !useridRegister) {
+				
+				if (!useridRegister) {
 					$("#register-msg").css('visibility', 'visible');
-					$("#register-msg").html("学工号或密码不能为空");
+					$("#register-msg").html("学工号不能为空");
 					return false;
 				}
 
-				if(passwordRegister.length < 6) {
+				if(passwordRegister.length < 1) {
 					$("#register-msg").css('visibility', 'visible');
 					$("#register-msg").html("密码长度不能少于6位");
 					return false;
@@ -275,34 +293,21 @@
 					$("#register-msg").html("密码不一致,请确认");
 					return false;
 				}
-				//待修改
-				$.ajax({   
+				$.ajax({
 					type: "POST",    
 					url: "checkregister.php",    
-					data: {useridRegister:useridRegister, passwordRegister:passwordRegister,
-						nameRegister:nameRegister,userSelect:userSelect},
-					success: function(data){    
-						if(data==1){    
-			            // 用户名或密码错误    
-			            alert("用户名或密码错误");    
-			        }else if(data==2){    
-			        	alert("验证码错误");    
-						// 验证码错误
-				    }}else if(data==0){ 
-			        	alert("注册成功")   
-			        	window.location.href="index";
-			        }, 
-				    error:function(XMLHttpRequest, textStatus, errorThrown){//请求失败时调用此函数    
-				    	console.log(XMLHttpRequest.status);    
-				    	console.log(XMLHttpRequest.readyState);    
-				    	console.log(textStatus);                                
-				    }    
-				});    
-
+					data: {useridRegister:useridRegister, 
+						passwordRegister:passwordRegister,
+						nameRegister:nameRegister,
+						userSelect:userSelect},
+					success: function(data){ 
+						alert(data);  
+					}
+				}); 
 			});
 
 		});
-		</script>
+	</script>
 		
-	</body>
-	</html>
+</body>
+</html>
