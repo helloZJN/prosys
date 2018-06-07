@@ -53,9 +53,9 @@
 					</div>
 					<div class="form-group">
 						<select class="form-control" name="user-select" id="user-select">
-							<option value="1">我是学生</option>
-							<option value="2">我是老师</option>
-							<option value="3">我是管理员</option>
+							<option value="stu">我是学生</option>
+							<option value="tea">我是老师</option>
+							<option value="adm">我是管理员</option>
 						</select>
 					</div>
 
@@ -187,7 +187,7 @@
 					}
 					init();
 				});
-			//登录 检查学工号和密码是否为空
+			//登录 检查学工号和密码是否为空 并登录
 			$("#login").click(function() {
 				var userid = $("#userid").val();
 				var password = $("#password").val();
@@ -209,7 +209,7 @@
 				$.ajax({
 					type: "POST",
 					url: "checkuser.php",
-					data: {userid:userid,
+		 			data: {userid:userid,
 						password:password,
 						userSelect:userSelect},
 					success: function(res) {
@@ -218,12 +218,43 @@
 							$("#register-msg").html("账号或密码错误");
 						}else if(res=="y"){
 							$("#register-msg").css('visibility', 'hidden');
+							setCookie("userid",userid);
+							setCookie("password",password);
+							setCookie("userSelect",userSelect);
+							window.location.href="main.php";
 						}else{
 							alert(res);
 						}
 					}
 				});
 			});
+			//类型修改 重新判断id
+			$("#user-select-register").change(function() {
+				var useridRegister = $("#userid-register").val();
+				var userSelect = $("#user-select-register").val();
+				if(useridRegister.length==0){
+					$("#register-msg").css('visibility', 'visible');
+					$("#register-msg").html("学工号不能为空");
+					return false;
+				}
+				$.ajax({
+					type: "POST",
+					url: "checkid.php",
+					data: {useridRegister:useridRegister,
+						userSelect:userSelect},
+					success: function(res) {
+						if(res=="n"){
+							$("#register-msg").css('visibility', 'visible');
+							$("#register-msg").html("学工号已存在");
+						}else if(res=="y"){
+							$("#register-msg").css('visibility', 'hidden');
+						}else{
+							alert(res);
+						}
+					}
+				});
+			});
+
 			//注册 判断id是否存在
 			$("#userid-register").keyup(function() {
 				var useridRegister = $("#userid-register").val();
@@ -265,7 +296,7 @@
 					$("#register-msg").html("学工号不能为空");
 					return false;
 				}
-				if(passwordRegister.length < 1) {
+				if(passwordRegister.length < 6) {
 					$("#register-msg").css('visibility', 'visible');
 					$("#register-msg").html("密码长度不能少于6位");
 					return false;
@@ -280,6 +311,7 @@
 					$("#register-msg").html("密码不一致,请确认");
 					return false;
 				}
+				$("#register-msg").css('visibility', 'hidden');
 				$.ajax({
 					type: "POST",    
 					url: "checkregister.php",    
@@ -288,7 +320,10 @@
 						nameRegister:nameRegister,
 						userSelect:userSelect},
 					success: function(data){ 
-						alert(data);  
+						alert(data); 
+						if(data=="注册成功"){
+							$("#userid-register").val("");
+						}
 					}
 				}); 
 			});

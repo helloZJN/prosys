@@ -4,28 +4,28 @@ CREATE USER scott IDENTIFIED BY tiger ;
 -- 为用户授权
 GRANT CONNECT,RESOURCE,UNLIMITED TABLESPACE TO scott CONTAINER=ALL ;
 -- 设置用户使用的表空间
-ALTER USER scott DEFAULT TABLESPACE USERS;
-ALTER USER scott TEMPORARY TABLESPACE TEMP;
+ALTER USER c##scott DEFAULT TABLESPACE USERS;
+ALTER USER c##scott TEMPORARY TABLESPACE TEMP;
 -- 使用c##scott用户登录
 CONNECT scott/tiger
 create table student(
-	stuid varchar(20),
+	stuid varchar(20) primary key,
 	stuname varchar(20),
 	email varchar(20),
 	password varchar(20)
 );
 create table teacher_info(
-	teaid varchar(20),
+	teaid varchar(20) primary key,
 	teaname varchar(20),
 	email varchar(20),
 	password varchar(20)
 );
 create table admin(
-	admid varchar(20),
+	admid varchar(20) primary key,
 	password varchar(20)
 );
 create table info(
-	infoid varchar(20),
+	infoid varchar(20) primary key,
 	teaname varchar(20),
 	teaid varchar(20),
 	title varchar(50),
@@ -34,7 +34,7 @@ create table info(
 	readtimes int
 );
 create table stufile(
-	fileid varchar(20),
+	fileid varchar(20) primary key,
 	teaname varchar(20),
 	teaid varchar(20),
 	title varchar(50),
@@ -45,7 +45,7 @@ create table stufile(
 	filecontent varchar(50)
 );
 create table folder(
-	foldid varchar(20),
+	foldid varchar(20) primary key,
 	foldname varchar(20),
 	teaid varchar(20)
 );
