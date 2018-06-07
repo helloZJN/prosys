@@ -7,7 +7,7 @@
 	if($userSelect=="stu"){
 		$tableName="student";
 	}else{
-		$tableName="teacher";
+		$tableName="teacher_info";
 	}
 	
 	header("Content-type:text/html;charset=utf-8");

@@ -23,7 +23,8 @@ class Oracle_oci
 	}
 	function insert($query){
 		$stid = oci_parse($this->conn, $query);
-		return oci_execute($stid);
+		oci_execute($stid);
+		return $stid;
 	}
 	function select($query){
 		$stid = oci_parse($this->conn, $query);
@@ -32,11 +33,13 @@ class Oracle_oci
 	}
 	function update($query){
 		$stid = oci_parse($this->conn, $query);
-		return oci_execute($stid);
+		oci_execute($stid);
+		return $stid;
 	}
 	function delete($query){
 		$stid = oci_parse($this->conn, $query);
-		return oci_execute($stid);
+		oci_execute($stid);
+		return $stid;
 	}
 }
 

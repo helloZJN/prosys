@@ -8,14 +8,14 @@
 	$dbe->conn();
 	if($dbe->conn){
 		if($userSelect=="stu"){
-			$stid=$dbe->select("select * from student where stuid=$useridRegister");
+			$stid=$dbe->select("select * from student where stuid=".$useridRegister);
 			if($row=oci_fetch_array($stid)){
 				echo "n";
 			}else{
 				echo "y";
 			}
 		}else{
-			$stid=$dbe->select("select * from teacher where teaid=$useridRegister");
+			$stid=$dbe->select("select * from teacher_info where teaid=".$useridRegister);
 			if($row=oci_fetch_array($stid)){
 				echo "n";
 			}else{
