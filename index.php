@@ -227,9 +227,6 @@
 					data: {useridRegister:useridRegister},
 					success: function(res) {
 						$("#register-msg").css('visibility', 'visible');
-						
-
-
 						$("#register-msg").html(res);
 						
 					}

@@ -68,12 +68,6 @@ body {
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a class="navbar-brand" href="#">专业实训综合管理系统</a>
             </div>
             <form class="navbar-form navbar-right" role="search">
@@ -117,7 +111,7 @@ body {
                         'per_info' => 'per_info.php',
                         'user_manager' => 'user_manager.php'
                     );
-                    include(isset($allowedPages[$content]) ? $allowedPages[$content] : $allowedPages["home"]);
+                    include(isset($allowedPages[$content]) ? $allowedPages[$content] : $allowedPages["notice"]);
                 ?>
             </div>
 
