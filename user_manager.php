@@ -4,7 +4,9 @@
 	$page1=isset($_GET['page1'])?$_GET['page1']:1;
 	$page=isset($_GET['page'])?$_GET['page']:1;
 	$tealines=0;
+	$tea_del_lines=50;
 	$stulines=100;
+	$stu_del_lines=150;
 ?>
 <h1 class="page-header" id="pageheader">用户管理</h1>
 <!-- 老师管理 -->
@@ -43,13 +45,15 @@
 									echo '<tr><td>'.($tealines+1).'</td>
 									<td>'.$row['0'].'</td>
 									<td>'.$row['1'].'</td>
-									<td><button type="button" class="badge pull-right" onclick="updatetea(this)" id="'.$tealines.'">修改</button></td>
-									<td><button type="button" class="badge pull-right">删除</button></td></tr>
+									<td><button type="button" class="badge pull-right" onclick="updateuser(this)" id="'.$tealines.'">修改</button></td>
+									<td><button type="button" class="badge pull-right" id="'.$tea_del_lines.'" onclick="deluser(this)">删除</button></td></tr>
 									<a id="teaid'.$tealines.'" style="display:none">'.$row['0'].'</a>
 									<a id="teaname'.$tealines.'" style="display:none">'.$row['1'].'</a>
 									<a id="teapwd'.$tealines.'" style="display:none">'.$row['3'].'</a>';
 									$tealines=$tealines+1;
+									$tea_del_lines=$tea_del_lines+1;
 								}
+								$dbe->close();
 							}
 							echo "<tr><th colspan='5'>共".$totalnum."条信息&nbsp&nbsp第".$page."页/共".$pagecount."页</th></tr>";
 							echo '<tr><th colspan="5"><div align="center">';
@@ -98,13 +102,15 @@
 									echo '<tr><td>'.($stulines+1-100).'</td>
 									<td>'.$row['0'].'</td>
 									<td>'.$row['1'].'</td>
-									<td><button type="button" class="badge pull-right" onclick="updatestu(this)" id="stu'.$stulines.'">修改</button></td>
-									<td><button type="button" class="badge pull-right">删除</button></td></tr>
+									<td><button type="button" class="badge pull-right" onclick="updateuser(this)" id="'.$stulines.'">修改</button></td>
+									<td><button type="button" class="badge pull-right" onclick="deluser(this)" id="'.$stu_del_lines.'">删除</button></td></tr>
 									<a id="stuid'.$stulines.'" style="display:none">'.$row['0'].'</a>
 									<a id="stuname'.$stulines.'" style="display:none">'.$row['1'].'</a>
 									<a id="stupwd'.$stulines.'" style="display:none">'.$row['3'].'</a>';
 									$stulines=$stulines+1;
+									$stu_del_lines=$stu_del_lines+1;
 								}
+								$dbe->close();
 							}
 							echo "<tr><th colspan='5'>共".$totalnum."条信息&nbsp&nbsp第".$page1."页/共".$pagecount."页</th></tr>";
 							echo '<tr><th colspan="5"><div align="center">';
@@ -131,6 +137,12 @@
       <div class="modal-body">
 		<form class="form-horizontal">
 		  <div class="form-group">
+		    <label for="usertype" class="col-sm-2 control-label">用户类型</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="usertype" placeholder="用户类型" disabled="true">
+		    </div>
+		  </div>
+		  <div class="form-group">
 		    <label for="userid" class="col-sm-2 control-label">学工号</label>
 		    <div class="col-sm-10">
 		      <input type="text" class="form-control" id="userid" placeholder="请输入你的学工号" disabled="true">
@@ -152,51 +164,86 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">修改</button>
+        <button type="button" class="btn btn-primary" onclick="submit_update()">修改</button>
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
-	function updatetea(e){
+	function submit_update(){
+		if($("#usertype").val()=='老师'){
+			var user_table="teacher_info";
+		}else {
+			var user_table="student";
+		}
+		$.ajax({
+				type: "POST",
+				url: "updateuser.php",
+				data: {userid:$("#userid").val(),
+					username:$("#username").val(),
+					userpwd:$("#userpwd").val(),
+					table:user_table},
+				success: function(res) {
+					if(res=="yes"){
+						alert("修改成功!");
+						window.location.href="http://127.0.0.1/prosys/main.php?content=user_manager";
+					}else {
+						alert("修改失败！");
+					}
+
+				}
+				});
+	}
+	function deluser(e){
+		if(e.id<149){
+			var user_id='#teaid'+(e.id-50);
+			user_id=$(user_id).text();
+			var user_table="teacher_info";
+		}else {
+			var user_id='#stuid'+(e.id-50);
+			user_id=$(user_id).text();
+			var user_table="student";
+		}
+		$.ajax({
+				type: "POST",
+				url: "deluser.php",
+				data: {userid:user_id,
+					table:user_table},
+				success: function(res) {
+					if(res=="yes"){
+						window.location.href="http://127.0.0.1/prosys/main.php?content=user_manager";
+					}else {
+						alert("删除失败！");
+					}
+
+				}
+				});
+	}
+	function updateuser(e){
 		var index=e.id;
-		var teaid='#teaid'+e.id;
-		teaid=$(teaid).text();
-		var teaname='#teaname'+e.id;
-		teaname=$(teaname).text();
-		var teapwd='#teapwd'+e.id;
-		teapwd=$(teapwd).text();
-		$("#userid").val(teaid);
-		$("#username").val(teaname);
-		$("#userpwd").val(teapwd);
-		// 
-		// $("#notice-user-date").html(teaname+"&nbsp;&nbsp;日期:"+infotime);
-		// $("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;"+content);
-
+		if(e.id<99){
+			var userid='#teaid'+e.id;
+			userid=$(userid).text();
+			var username='#teaname'+e.id;
+			username=$(username).text();
+			var userpwd='#teapwd'+e.id;
+			userpwd=$(userpwd).text();
+			$("#usertype").val("老师");
+		}else {
+			var userid='#stuid'+e.id;
+			userid=$(userid).text();
+			var username='#stuname'+e.id;
+			username=$(username).text();
+			var userpwd='#stupwd'+e.id;
+			userpwd=$(userpwd).text();
+			$("#usertype").val("学生");
+		}	
+		$("#userid").val(userid);
+		$("#username").val(username);
+		$("#userpwd").val(userpwd);
 		$('#updateModal').modal({
             keyboard: true
         });
 	}
-	function updatestu(e){
-		var index=e.id-100;
-		var stuid='#stuid'+e.id;
-		stuid=$(stuid).text();
-		var stuname='#stuname'+e.id;
-		stuname=$(stuname).text();
-		var stupwd='#stupwd'+e.id;
-		stupwd=$(stupwd).text();
-		$("#userid").val(stuid);
-		$("#username").val(stuname);
-		$("#userpwd").val(stupwd);
-
-		// $("#myModalLabel").text(title);
-		// $("#notice-user-date").html(teaname+"&nbsp;&nbsp;日期:"+infotime);
-		// $("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;"+content);
-
-		$('#updateModal').modal({
-            keyboard: true
-        });
-	}
-	
 
 </script>

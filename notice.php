@@ -93,7 +93,7 @@
 	
 
 </script>
-// $.ajax({
+<!-- // $.ajax({
 	// 	type: $("#login-form").attr("method"),
 	// 	type: 'POST',
 	// 	url: '../services/users/check-user.php',
@@ -116,4 +116,4 @@
 	// 			}, 10000);
 	// 		}
 	// 	}
-	// });
+	// }); -->
