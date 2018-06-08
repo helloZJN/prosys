@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>专业综合实训管理系统</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
 
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
