@@ -218,9 +218,6 @@
 							$("#register-msg").html("账号或密码错误");
 						}else if(res=="y"){
 							$("#register-msg").css('visibility', 'hidden');
-							setCookie("userid",userid);
-							setCookie("password",password);
-							setCookie("userSelect",userSelect);
 							window.location.href="main.php";
 						}else{
 							alert(res);

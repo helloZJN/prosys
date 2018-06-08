@@ -1,13 +1,13 @@
 CONN sys/change_on_install AS SYSDBA ;
 -- 创建c##scott用户
-CREATE USER scott IDENTIFIED BY tiger ;
+CREATE USER c##scott IDENTIFIED BY tiger ;
 -- 为用户授权
-GRANT CONNECT,RESOURCE,UNLIMITED TABLESPACE TO scott CONTAINER=ALL ;
+GRANT CONNECT,RESOURCE,UNLIMITED TABLESPACE TO c##scott CONTAINER=ALL ;
 -- 设置用户使用的表空间
 ALTER USER c##scott DEFAULT TABLESPACE USERS;
 ALTER USER c##scott TEMPORARY TABLESPACE TEMP;
 -- 使用c##scott用户登录
-CONNECT scott/tiger
+CONNECT c##scott/tiger
 create table student(
 	stuid varchar(20) primary key,
 	stuname varchar(20),
