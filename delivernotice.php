@@ -1,4 +1,8 @@
 <?php 
+	session_start();
+	if(($_SESSION['usertype'])!='teacher_info'){
+		echo "<script>alert('你没有权限进入该页面！即将跳转到登陆界面');window.location.href='index.php';</script>";
+	}
 	$infoid=$_POST['infoid'];
 	$teaname=$_POST['teaname'];
 	$teaid=$_POST['teaid'];

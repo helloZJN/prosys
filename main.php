@@ -62,7 +62,7 @@ body {
 </style>
 
 </head>
-
+<?php session_start(); ?>
 <body>
     <!--下面是顶部导航栏的代码-->
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -88,12 +88,15 @@ body {
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a href="#" onclick="get_notice(this)">公告</a></li>
-                    <li><a href="#" onclick="get_deliver_notice(this)">发布公告</a></li>
+                    <?php echo ($_SESSION['usertype']=='teacher_info')?'<li><a href="#" onclick="get_deliver_notice(this)">发布公告</a></li>':""; ?>
+                    
                     <li><a href="#" onclick="get_submit_work(this)">提交作业</a></li>
                     <li><a href="#" onclick="get_watch_work(this)">查看作业</a></li>
-                    <li><a href="#" onclick="get_make_dir(this)">创建文件夹</a></li>
+                    <?php echo ($_SESSION['usertype']=='teacher_info')?'<li><a href="#" onclick="get_make_dir(this)">创建文件夹</a></li>':""; ?>
+                    
                     <li><a href="#" onclick="get_per_info(this)">个人信息</a></li>
-                    <li><a href="#" onclick="get_user_manager(this)">用户管理</a></li>
+                    <?php ($_SESSION['usertype']=='admin')?'<li><a href="#" onclick="get_user_manager(this)">用户管理</a></li>':""; ?>
+                    
                     <li><a href="#" onclick="get_help(this)">帮助</a></li>
                 </ul>
             </div>

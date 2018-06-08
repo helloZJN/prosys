@@ -1,4 +1,8 @@
 <?php include_once('conn/Oracle_oci.class.php'); 
+	session_start();
+	if(($_SESSION['usertype'])!='admin'){
+		echo "<script>alert('你没有权限进入该页面！即将跳转到登陆界面');window.location.href='index.php';</script>";
+	}
 	$page=0;
 	$page1=0;
 	$page1=isset($_GET['page1'])?$_GET['page1']:1;
