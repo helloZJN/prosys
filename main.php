@@ -84,7 +84,7 @@ body {
 
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#">首页</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a href="#" onclick="get_notice(this)">公告</a></li>

@@ -157,7 +157,7 @@
 		  <div class="form-group">
 		    <label for="userpwd" class="col-sm-2 control-label">密码</label>
 		    <div class="col-sm-10">
-		      <input type="password" class="form-control" id="userpwd" placeholder="密码">
+		      <input type="text" class="form-control" id="userpwd" placeholder="密码">
 		    </div>
 		  </div>
 		</form>
@@ -186,7 +186,7 @@
 				success: function(res) {
 					if(res=="yes"){
 						alert("修改成功!");
-						window.location.href="http://127.0.0.1/prosys/main.php?content=user_manager";
+						window.location.href="main.php?content=user_manager";
 					}else {
 						alert("修改失败！");
 					}
@@ -195,29 +195,32 @@
 				});
 	}
 	function deluser(e){
-		if(e.id<149){
-			var user_id='#teaid'+(e.id-50);
-			user_id=$(user_id).text();
-			var user_table="teacher_info";
-		}else {
-			var user_id='#stuid'+(e.id-50);
-			user_id=$(user_id).text();
-			var user_table="student";
-		}
-		$.ajax({
-				type: "POST",
-				url: "deluser.php",
-				data: {userid:user_id,
-					table:user_table},
-				success: function(res) {
-					if(res=="yes"){
-						window.location.href="http://127.0.0.1/prosys/main.php?content=user_manager";
-					}else {
-						alert("删除失败！");
-					}
+		if(confirm("确认删除此用户？")==true){
+			if(e.id<149){
+				var user_id='#teaid'+(e.id-50);
+				user_id=$(user_id).text();
+				var user_table="teacher_info";
+			}else {
+				var user_id='#stuid'+(e.id-50);
+				user_id=$(user_id).text();
+				var user_table="student";
+			}
+			$.ajax({
+					type: "POST",
+					url: "deluser.php",
+					data: {userid:user_id,
+						table:user_table},
+					success: function(res) {
+						if(res=="yes"){
+							window.location.href="http://127.0.0.1/prosys/main.php?content=user_manager";
+						}else {
+							alert("删除失败！");
+						}
 
-				}
-				});
+					}
+					});
+		}
+
 	}
 	function updateuser(e){
 		var index=e.id;
