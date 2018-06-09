@@ -1,8 +1,4 @@
 <?php include_once('conn/Oracle_oci.class.php'); 
-	/*session_start();
-	if(!isset($_SESSION['userid'])){
-		echo "<script>alert('当前未登录！即将跳转到登陆界面');window.location.href='index.php';</script>";
-	}*/
 	$dbe=new Oracle_oci();
 	$dbe->conn();
 	if($dbe->conn){

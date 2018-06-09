@@ -1,5 +1,4 @@
 <?php include_once('conn/Oracle_oci.class.php'); 
-	session_start();
 	if(($_SESSION['usertype'])!='admin'){
 		echo "<script>alert('你没有权限进入该页面！即将跳转到登陆界面');window.location.href='index.php';</script>";
 	}
