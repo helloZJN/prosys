@@ -41,7 +41,6 @@
 								$pagesize=5;//每页显示条数
 								$totalnum=oci_fetch_row($stid)['0'];//总条数
 								$pagecount=ceil($totalnum/$pagesize);//总页数
-
 								$stid=$dbe->select("select a1.* from (select teacher_info.*,rownum rn from teacher_info) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
 								while($row=oci_fetch_array($stid)){
 									//var_dump($row);

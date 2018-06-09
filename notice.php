@@ -21,7 +21,7 @@
 							$pagecount=ceil($totalnum/$pagesize);//总页数
 							$lines=0;
 							$lilines=0;
-							$stid=$dbe->select("select a1.* from (select info.*,rownum rn from info) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
+							$stid=$dbe->select("select a1.* from (select info.*,rownum rn from info order by info.infotime desc) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
 							while($row=oci_fetch_row($stid)){
 								//var_dump($row);
 								echo '<li role="presentation"><a href="#" class="alert alert-info"><button type="button" class="badge pull-right" onclick="getmodal(this)" id="'.$lines.'">阅读</button>

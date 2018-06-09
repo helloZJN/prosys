@@ -1,7 +1,9 @@
 <?php include_once('conn/Oracle_oci.class.php'); 
 	if(($_SESSION['usertype'])!='teacher_info'){
 		echo "<script>alert('你没有权限进入该页面！即将跳转到登陆界面');window.location.href='index.php';</script>";
-	}	
+	}
+	$nowtime=time();
+	$nowtime=date("Y-m-d H:i:s",$nowtime);
 ?>
 <h1 class="page-header" id="pageheader">发布公告</h1>
 <div class="row clearfix">
@@ -13,6 +15,9 @@
 					<input type="text" class="form-control" id="notice-title" placeholder="标题" >
 				</div>
 			</div>
+			<?php echo '<a style="display: none" id="deliverid">'.$_SESSION["userid"].'</a>'; ?>
+			<?php echo '<a style="display: none" id="delievername">'.$_SESSION["username"].'</a>'; ?>
+			<?php echo '<a style="display: none" id="delieverinfotime">'.$nowtime.'</a>'; ?>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-6">
 					<textarea rows="10" cols="50" id="notice-content" class="form-control" placeholder="请输入公告内容"></textarea>
@@ -29,18 +34,19 @@
 	</div>
 </div>
 <script type="text/javascript">
-	var myDate = new Date();
-	function submit_info(e){
+
+	function submit_info(e){	
+		var myDate = new Date();
 		$.ajax({
 			type: "POST",
 			url: "delivernotice.php",
 			data: {
 				infoid:myDate.getTime(),
-				teaid:$_SESSION['userid'],
-				teaname:$_SESSION['username'],
+				teaid:$("#deliverid").text(),
+				teaname:$("#delievername").text(),
 				title:$("#notice-title").val(),
 				content:$("#notice-content").val(),
-				infotime:date('y-m-d H:i:s',time())},
+				infotime:$("#delieverinfotime").text() },
 			success: function(res) {
 				if(res=="发布成功"){
 					alert("发布成功!");
@@ -52,5 +58,4 @@
 			}
 		});
 	}
-
 </script>

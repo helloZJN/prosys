@@ -19,12 +19,22 @@
 	include_once('conn/Oracle_oci.class.php');
 	$dbe=new Oracle_oci();
 	$dbe->conn();
+
 	if($dbe->conn){
 		$sql_re=$dbe->select($sql_op);
 		if($sql_re){
-			echo "y";
+			if($usertype!='admin'){
+				while($row=oci_fetch_array($sql_re)){
+					$username=$row['1'];
+				}
+				$_SESSION['username']=$username;
+			}	else {
+				$_SESSION['username']='admin';
+			}	
+			
 			$_SESSION['userid']=$userid;
 			$_SESSION['usertype']=$usertype;
+			echo "y";
 		}else{
 			echo "n";
 		}
