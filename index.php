@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+	<link rel="icon" type="image/png" href="assets/i/favicon.png">
 	<!-- Bootstrap core CSS -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
