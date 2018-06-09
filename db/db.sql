@@ -55,6 +55,8 @@ insert into admin values('000001','1');
 insert into admin values('000002','2');
 insert into admin values('000003','3');
 
+alter session set nls_date_format = 'yyyy-mm-dd hh24:mi:ss';
+
 insert into info values('1','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
 insert into info values('2','lh','0000','关于张晋男小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
 insert into info values('3','lh','0000','关于童冰小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
