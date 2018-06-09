@@ -60,9 +60,8 @@ body {
     margin-top: 0;
 }
 </style>
-
-</head>
 <?php session_start(); ?>
+</head>
 <body>
     <!--下面是顶部导航栏的代码-->
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -71,6 +70,7 @@ body {
                 <a class="navbar-brand" href="#">专业实训综合管理系统</a>
             </div>
             <form class="navbar-form navbar-right" role="search">
+                <h3><?php echo $_SESSION['usertype']; ?></h3>
                 <button type="submit" class="btn btn-default">登录</button>
             </form>
             </div>
@@ -89,13 +89,14 @@ body {
                 <ul class="nav nav-sidebar">
                     <li><a href="#" onclick="get_notice(this)">公告</a></li>
                     <?php echo ($_SESSION['usertype']=='teacher_info')?'<li><a href="#" onclick="get_deliver_notice(this)">发布公告</a></li>':""; ?>
+                    <?php echo ($_SESSION['usertype']=='student')?'<li><a href="#" onclick="get_submit_work(this)">提交作业</a></li>':""; ?>
+                   
+                    <?php  echo ($_SESSION['usertype']=='student')?'<li><a href="#" onclick="get_watch_work(this)">查看作业</a></li>':""; ?>
                     
-                    <li><a href="#" onclick="get_submit_work(this)">提交作业</a></li>
-                    <li><a href="#" onclick="get_watch_work(this)">查看作业</a></li>
-                    <?php echo ($_SESSION['usertype']=='teacher_info')?'<li><a href="#" onclick="get_make_dir(this)">创建文件夹</a></li>':""; ?>
+                    <?php echo ($_SESSION['usertype']=='teacher_info')?'<li><a href="#" onclick="get_make_dir(this)">文件夹</a></li>':""; ?>
                     
                     <li><a href="#" onclick="get_per_info(this)">个人信息</a></li>
-                    <?php ($_SESSION['usertype']=='admin')?'<li><a href="#" onclick="get_user_manager(this)">用户管理</a></li>':""; ?>
+                    <?php echo ($_SESSION['usertype']=='admin')?'<li><a href="#" onclick="get_user_manager(this)">用户管理</a></li>':""; ?>
                     
                     <li><a href="#" onclick="get_help(this)">帮助</a></li>
                 </ul>
@@ -136,7 +137,7 @@ body {
             window.location='main.php?content=per_info';
         }
         function get_make_dir(argument) {
-            window.location='main.php?content=make_dir';
+            window.location='main.php?content=tea_dir';
         }
         function get_watch_work(argument) {
             window.location='main.php?content=watch_work';

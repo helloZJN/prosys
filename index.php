@@ -45,7 +45,7 @@
 
 		<div class="row" id="login-overview">
 			<div class="col-xs-12 col-sm-12 col-md-12">
-				<form id="login-form" role="form" action="checkuser.php" method="post">
+				<form id="login-form" role="form" >
 					<div class="form-group">
 						<div id="login-msg" class="col-xs-12 col-sm-12 col-md-12 alert alert-warning">
 							警告：
