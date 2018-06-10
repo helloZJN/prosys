@@ -112,7 +112,7 @@ body {
                         'delivernotice' => 'deliver_notice.php',
                         'submit_work' => 'submit_work.php',
                         'watch_work' => 'watch_work.php',
-                        'make_dir' => 'make_dir.php',
+                        'tea_dir' => 'tea_dir.php',
                         'per_info' => 'per_info.php',
                         'user_manager' => 'user_manager.php'
                     );
