@@ -155,63 +155,6 @@
         </div>
     </div>
 
-
-
-    
-
-    <!-- <div class="left-sidebar">
-        <div class="row">
-
-
-            <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
-                    <li><a href="#">首页</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="#" onclick="get_notice(this)">公告</a></li>
-                    <?php echo ($_SESSION['usertype']=='teacher_info')?'
-                        <li class="sidebar-nav-link">
-                            <a a href="#" onclick="get_deliver_notice(this)">
-                                <i class="am-icon-bar-chart sidebar-nav-link-logo"></i>发布公告
-                            </a>
-                        </li>':""; 
-                    ?>
-                    <?php echo ($_SESSION['usertype']=='student')?'<li><a href="#" onclick="get_submit_work(this)">提交作业</a></li>':""; ?>
-                   
-                    <?php  echo ($_SESSION['usertype']=='student')?'<li><a href="#" onclick="get_watch_work(this)">查看作业</a></li>':""; ?>
-                    
-                    <?php echo ($_SESSION['usertype']=='teacher_info')?'<li><a href="#" onclick="get_make_dir(this)">文件夹</a></li>':""; ?>
-                    
-                    <li><a href="#" onclick="get_per_info(this)">个人信息</a></li>
-                    <?php echo ($_SESSION['usertype']=='admin')?'<li><a href="#" onclick="get_user_manager(this)">用户管理</a></li>':""; ?>
-                    
-                    <li><a href="#" onclick="get_help(this)">帮助</a></li>
-                </ul>
-            </div>
-
-
-
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">           
-                <?php 
-                    $content = isset($_GET['content']) ? trim(strtolower($_GET['content'])) : "notice";
-                    $allowedPages = array(
-                        'notice'     => 'notice.php',
-                        'about'    => 'about.php',
-                        'delivernotice' => 'deliver_notice.php',
-                        'submit_work' => 'submit_work.php',
-                        'watch_work' => 'watch_work.php',
-                        'tea_dir' => 'tea_dir.php',
-                        'per_info' => 'per_info.php',
-                        'user_manager' => 'user_manager.php'
-                    );
-                    include(isset($allowedPages[$content]) ? $allowedPages[$content] : $allowedPages["notice"]);
-                ?>
-            </div>
-
-
-        </div>
-    </div> -->
-
     <script type="text/javascript">
         function get_notice(argument) {
             window.location='main.php?content=notice';
