@@ -35,14 +35,11 @@ create table info(
 );
 create table stufile(
 	fileid varchar(20) primary key,
-	teaname varchar(20),
 	teaid varchar(20),
-	title varchar(50),
-	stuname varchar(20),
 	stuid varchar(20),
 	folderid varchar(20),
 	foldername varchar(20),
-	filecontent varchar(50)
+	filepath varchar(50)
 );
 create table folder(
 	foldid varchar(20) primary key,

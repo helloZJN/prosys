@@ -12,6 +12,7 @@
 			<!--—panel面板的标题，下同---->
 			<div class="">
 				<div> <select class="form-control col-md-4" onchange="selectOnchang(this)">
+					<option value="" disabled selected></option>
 			            <?php 
 			            	$dbe=new Oracle_oci();
 							$dbe->conn();
@@ -63,24 +64,16 @@
 <?php echo "<a style='display:none' id='mkdir_id'>".$_SESSION['userid']."</a>"; ?>
 <script type="text/javascript">
 	function selectOnchang(obj){
-		var value = obj.options[obj.selectedIndex].text;
-		$("stu_work").html('');
+		var value = obj.options[obj.selectedIndex].val();
+		
 		$.ajax({
 				type: "POST",    
 				url: "getstuwork.php",    
 				data: {
-					foldid:$("#foldername").val(),
-					teaid:$("#mkdir_id").text(),
+					foldid:value,
 					},
-				success: function(data){ 	
-					alert(data); 
-					if(data=="创建成功"){
-						window.location="main.php?content=tea_dir";
-					}else if(data=="文件夹已存在") {
-						
-					}else{
-						
-					}
+				success: function(data){ 
+					$("stu_work").html(data);	
 				}
 			}); 
 	}
