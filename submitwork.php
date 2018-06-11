@@ -9,12 +9,13 @@ $teaid=$_POST['teaid'];
 $stuid=$_POST['stuid'];
 $foldid=$_POST['foldid'];
 $foldname=$_POST['foldname'];
-//$filecontent=$_POST['filecontent'];
+$filecontent=$_FILES['file']['name'];
 echo "$fileid
 $teaid
 $stuid
 $foldid
 $foldname
+$filecontent
 ";
 // include_once('conn/Oracle_oci.class.php');
 // $dbe=new Oracle_oci();
