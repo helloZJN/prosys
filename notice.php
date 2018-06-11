@@ -83,13 +83,14 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top: 50px">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content" style="width: 1000px">
+      <div class="modal-header" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel" style="color:#000000">公告</h4>
+        <h4 class="modal-title" id="myModalLabel" style="color:#000000;font-size: 30px;" align="center">公告</h4>
       </div>
       <div class="modal-body">
       	<div align="center" id="notice-user-date" style="color:#000000">作者</div>
+      	<div style="padding-top: 15px"></div>
       	<div id="notice-content" style="font-size: 25px;color:#000000" >这是我发布的公告</div>
        
       </div>
@@ -111,11 +112,9 @@
 		var infotime='#infotime'+e.id;
 		infotime=$(infotime).text();
 
-		alert(title);
-
 		$("#myModalLabel").text(title);
-		$("#notice-user-date").html("作者:"+teaname+"日期:20"+infotime+"日");
-		$("#notice-content").html(content);
+		$("#notice-user-date").html("作者:"+teaname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期:20"+infotime+"日");
+		$("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+content);
 
 		$('#myModal').modal({
             keyboard: true

@@ -16,11 +16,12 @@
 	$dbe->conn();
 	if($dbe->conn){
 		$sql_op="insert into info values('".$infoid."','".$teaname."','".$teaid."','".$title."','".$content."',sysdate,0)";
+
 		$sql_re=$dbe->insert($sql_op);
 		if($sql_re){
 			echo "发布成功";
 		}else{
-			echo "发布失败";
+			echo "发布失败,可能内容字数过长";
 		}
 		$dbe->close();
 	}else {

@@ -118,7 +118,7 @@
                     <a href="#" onclick="get_help(this)" class="fon">帮助</a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <div style="padding-top: 900px">
+                    <div style="padding-top: 500px">
                 </li>
 
                 </ul>

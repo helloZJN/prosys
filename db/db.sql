@@ -29,7 +29,7 @@ create table info(
 	teaname varchar(20),
 	teaid varchar(20),
 	title varchar(50),
-	content varchar(300),
+	content varchar(2000),
 	infotime date,
 	readtimes int
 );
