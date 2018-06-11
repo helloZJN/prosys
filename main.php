@@ -7,80 +7,161 @@
     <title>专业综合实训管理系统</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/i/favicon.png">
-
-<!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]-->
-<style>
-body {
-    padding-top: 50px;
-    padding-bottom: 40px;
-    color: #5a5a5a;
-}
-
-
-.sidebar {
-    position: fixed;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: #ddd;
-    border-right: 1px solid #eee;
-}
-
-.nav-sidebar {
-    margin-right: -21px;
-    margin-bottom: 20px;
-    margin-left: -20px;
-}
-
-.nav-sidebar > li > a {
-    padding-right: 20px;
-    padding-left: 20px;
-}
-
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-    color: #fff;
-    background-color: #428bca;
-}
-
-
-.main {
-    padding: 20px;
-}
-
-.main .page-header {
-    margin-top: 0;
-}
-</style>
-<?php session_start(); ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <script src="assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <?php session_start(); ?>
+    
+    <style type="text/css">
+        div.mar { 
+            margin-top: 20px;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+    </style>
 </head>
+
 <body>
     <!--下面是顶部导航栏的代码-->
-    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">专业实训综合管理系统</a>
-            </div>
-            <form class="navbar-form navbar-right" role="search">
-                <h3><?php echo $_SESSION['usertype']; ?></h3>
-            </form>
-            </div>
-        </div>
-    </nav>
+    <script src="assets/js/theme.js"></script>
 
-    <!--—自适应布局---->
-    <div class="container-fluid">
+    <div class="am-g tpl-g" >
+        <!-- 头部 -->
+        <header >
+            <!-- logo -->
+            <div class="am-fl tpl-header-logo">
+                <a href="javascript:;"><img src="imgs/logo.png" alt=""></a>
+            </div>
+            <!-- 右侧内容 -->
+            <div class="tpl-header-fluid">
+                <div class="am-fr tpl-header-navbar">
+                    <ul>
+                        <!-- 欢迎语 -->
+                        <li class="am-text-sm tpl-header-navbar-welcome">
+                            <a href="javascript:;">欢迎你, <span><?php echo $_SESSION['usertype']; ?></span> </a>
+                        </li>
+                        <!-- 退出 -->
+                        <li class="am-text-sm">
+                            <a href="javascript:;">
+                                <span class="am-icon-sign-out"></span> 退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
         <div class="row">
-            <!--—左侧导航栏---->
+            <div class="left-sidebar">
+                <!-- 用户信息 -->
+                <div class="tpl-sidebar-user-panel">
+                    <div class="tpl-user-panel-slide-toggleable">
+                        <div class="tpl-user-panel-profile-picture">
+                            <img src="assets/img/user04.png" alt="">
+                        </div>
+                        <span class="user-panel-logged-in-text">
+                          <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
+                          ZJN
+                      </span>
+                  </div>
+                </div>
+
+              <!-- 菜单 -->
+                <ul class="sidebar-nav">
+                
+                <!-- <li class="sidebar-nav-link">
+                    <a href="main.php" class="active">首页</a>
+                </li> -->
+
+                <li class="sidebar-nav-link">
+                    <a href="main.php">首页</a>
+                </li>
+
+                <?php echo ($_SESSION['usertype']=='teacher_info')?'
+                            <li class="sidebar-nav-link">
+                                <a href="#" onclick="get_deliver_notice(this)">发布公告</a>
+                            </li>':""; 
+                ?>
+
+                <?php echo ($_SESSION['usertype']=='student')?'
+                            <li class="sidebar-nav-link">
+                                <a href="#" onclick="get_submit_work(this)">提交作业</a>
+                            </li>':""; 
+                ?>
+
+                <?php echo ($_SESSION['usertype']=='student')?'
+                            <li class="sidebar-nav-link">
+                                <a href="#" onclick="get_watch_work(this)">查看作业</a>
+                            </li>':""; 
+                ?>
+
+                <?php echo ($_SESSION['usertype']=='teacher_info')?'
+                            <li class="sidebar-nav-link">
+                                <a href="#" onclick="get_make_dir(this)">文件夹</a>
+                            </li>':""; 
+                ?>
+
+                <?php echo ($_SESSION['usertype']=='admin')?'
+                            <li class="sidebar-nav-link">
+                                <a href="#" onclick="get_user_manager(this)>用户管理</a>
+                            </li>':""; 
+                ?>
+
+                <li class="sidebar-nav-link">
+                    <a href="#" onclick="get_help(this)">帮助</a>
+                </li>
+                <li class="sidebar-nav-link">
+                    <div style="padding-top: 900px">
+                </li>
+
+                </ul>
+            </div>
+
+            <div class="tpl-content-wrapper" >
+                <div class="row-content am-cf">
+                    <div class="mar">
+                    <div class="widget am-cf">
+                        <div class="widget-body">
+                            <div class="tpl-page-state">          
+                                <?php 
+                                    $content = isset($_GET['content']) ? trim(strtolower($_GET['content'])) : "notice";
+                                    $allowedPages = array(
+                                        'notice'     => 'notice.php',
+                                        'about'    => 'about.php',
+                                        'delivernotice' => 'deliver_notice.php',
+                                        'submit_work' => 'submit_work.php',
+                                        'watch_work' => 'watch_work.php',
+                                        'tea_dir' => 'tea_dir.php',
+                                        'per_info' => 'per_info.php',
+                                        'user_manager' => 'user_manager.php'
+                                    );
+                                    include(isset($allowedPages[$content]) ? $allowedPages[$content] : $allowedPages["notice"]);
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    
+
+    <!-- <div class="left-sidebar">
+        <div class="row">
+
 
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
@@ -88,7 +169,13 @@ body {
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a href="#" onclick="get_notice(this)">公告</a></li>
-                    <?php echo ($_SESSION['usertype']=='teacher_info')?'<li><a href="#" onclick="get_deliver_notice(this)">发布公告</a></li>':""; ?>
+                    <?php echo ($_SESSION['usertype']=='teacher_info')?'
+                        <li class="sidebar-nav-link">
+                            <a a href="#" onclick="get_deliver_notice(this)">
+                                <i class="am-icon-bar-chart sidebar-nav-link-logo"></i>发布公告
+                            </a>
+                        </li>':""; 
+                    ?>
                     <?php echo ($_SESSION['usertype']=='student')?'<li><a href="#" onclick="get_submit_work(this)">提交作业</a></li>':""; ?>
                    
                     <?php  echo ($_SESSION['usertype']=='student')?'<li><a href="#" onclick="get_watch_work(this)">查看作业</a></li>':""; ?>
@@ -101,7 +188,9 @@ body {
                     <li><a href="#" onclick="get_help(this)">帮助</a></li>
                 </ul>
             </div>
-            <!--—右侧管理控制台---->
+
+
+
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">           
                 <?php 
                     $content = isset($_GET['content']) ? trim(strtolower($_GET['content'])) : "notice";
@@ -121,7 +210,7 @@ body {
 
 
         </div>
-    </div>
+    </div> -->
 
     <script type="text/javascript">
         function get_notice(argument) {

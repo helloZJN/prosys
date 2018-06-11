@@ -1,11 +1,12 @@
 <?php include_once('conn/Oracle_oci.class.php'); ?>
-<h1 class="page-header" id="pageheader">公告</h1>
+<div class="tpl-page-state-title am-text-center tpl-error-title">公告</div>
 <div class="row">     
 	<div class="col-md-6">
 
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">系统公告</h3>
+
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-pills nav-stacked" role="tablist">
