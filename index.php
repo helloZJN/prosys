@@ -20,14 +20,16 @@
 		</video>
 	</div>
 	
-	<div style="padding-top: 50px">
+	<div style="padding-top: 80px">
 		
 	</div>
 	
 
 	<div class="container">
 		<div align="center">
-			<img src="imgs/logo.png" height="100">
+			<div style="padding-top: 20px">
+			<img src="imgs/logo.png" height="80">
+			<div style="padding-top: 20px">
 		</div>
 		<nav id="nav-menu">
 			<ul class="nav nav-pills">
