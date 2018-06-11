@@ -1,4 +1,9 @@
-<h1 class="page-header" id="pageheader">文件夹<button class="pull-right btn btn-info" onclick="make_dir(this)">创建文件夹</button></h1>
+<?php include_once('conn/Oracle_oci.class.php'); 
+	if(($_SESSION['usertype'])!='teacher_info'){
+		echo "<script>alert('你没有权限进入该页面！即将跳转到登陆界面');window.location.href='index.php';</script>";
+	}
+?>
+<h1 class="page-header" id="pageheader">文件夹<button class="pull-right btn btn-info" onclick="get_dir(this)">创建文件夹</button><button class="pull-right btn btn-info" onclick="del_dir(this)">删除文件夹</button></h1>
 
 <div class="row">     
 	<div class="col-md-12">
@@ -7,16 +12,28 @@
 			<!--—panel面板的标题，下同---->
 			<div class="">
 				<div> <select class="form-control col-md-4" onchange="selectOnchang(this)">
-			            <option>文件夹1</option>
-			            <option>文件夹2</option>
-			            <option>文件夹3</option>
-			            <option>文件夹4</option>
+			            <?php 
+			            	$dbe=new Oracle_oci();
+							$dbe->conn();
+							if($dbe->conn){
+								$stid=$dbe->select("select * from folder where teaid='".$_SESSION['userid']."'");
+								while($row=oci_fetch_array($stid)){
+									//var_dump($row);
+									echo '<option value="'.$row['0'].'">'.$row['1'].'</option>';
+								}
+								$dbe->close();
+							}
+
+			             ?>
 			        </select>
 			    </div>
 			       
 			</div>
+		</div>
+		<div class="col-md-12" id="stu_work">
 
 		</div>
+
 	</div>
 </div>
 <div class="modal fade" id="makedir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -37,24 +54,61 @@
 		</form>     
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">创建</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick="make_dir(this)">创建</button>
       </div>
     </div>
   </div>
 </div>
 <?php echo "<a style='display:none' id='mkdir_id'>".$_SESSION['userid']."</a>"; ?>
 <script type="text/javascript">
-	function selectOnchang(e){
-
+	function selectOnchang(obj){
+		var value = obj.options[obj.selectedIndex].text;
+		$("stu_work").html('');
+		$.ajax({
+				type: "POST",    
+				url: "getstuwork.php",    
+				data: {
+					foldid:$("#foldername").val(),
+					teaid:$("#mkdir_id").text(),
+					},
+				success: function(data){ 	
+					alert(data); 
+					if(data=="创建成功"){
+						window.location="main.php?content=tea_dir";
+					}else if(data=="文件夹已存在") {
+						
+					}else{
+						
+					}
+				}
+			}); 
 	}
-	function make_dir(e){
-		$base_dir="folder/";
-		$base_dir=$base_dir+$("#mkdir_id").text()+"/";
-		$foldername=$("#foldername").val();
-		alert($base_dir);
+	function get_dir(e){
 		$('#makedir').modal({
             keyboard: true
         });
+	}
+	function make_dir(e){
+		var myDate = new Date();
+		$.ajax({
+				type: "POST",    
+				url: "teadir.php",    
+				data: {foldid:myDate.getTime(), 
+					foldname:$("#foldername").val(),
+					teaid:$("#mkdir_id").text(),
+					},
+				success: function(data){ 	
+					alert(data); 
+					if(data=="创建成功"){
+						window.location="main.php?content=tea_dir";
+					}else if(data=="文件夹已存在") {
+						
+					}else{
+						
+					}
+				}
+			}); 
+
 	}
 </script>
