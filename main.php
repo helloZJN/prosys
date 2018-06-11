@@ -26,6 +26,9 @@
             margin-right: 30px;
             margin-left: 30px;
         }
+        a.fon{
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -75,47 +78,43 @@
 
               <!-- 菜单 -->
                 <ul class="sidebar-nav">
-                
-                <!-- <li class="sidebar-nav-link">
-                    <a href="main.php" class="active">首页</a>
-                </li> -->
 
                 <li class="sidebar-nav-link">
-                    <a href="main.php">首页</a>
+                    <a href="main.php" class="fon">首页</a>
                 </li>
 
                 <?php echo ($_SESSION['usertype']=='teacher_info')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_deliver_notice(this)">发布公告</a>
+                                <a href="#" onclick="get_deliver_notice(this)" class="fon">发布公告</a>
                             </li>':""; 
                 ?>
 
                 <?php echo ($_SESSION['usertype']=='student')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_submit_work(this)">提交作业</a>
+                                <a href="#" onclick="get_submit_work(this)" class="fon">提交作业</a>
                             </li>':""; 
                 ?>
 
                 <?php echo ($_SESSION['usertype']=='student')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_watch_work(this)">查看作业</a>
+                                <a href="#" onclick="get_watch_work(this)" class="fon">查看作业</a>
                             </li>':""; 
                 ?>
 
                 <?php echo ($_SESSION['usertype']=='teacher_info')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_make_dir(this)">文件夹</a>
+                                <a href="#" onclick="get_make_dir(this)" class="fon">文件夹</a>
                             </li>':""; 
                 ?>
 
                 <?php echo ($_SESSION['usertype']=='admin')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_user_manager(this)>用户管理</a>
+                                <a href="#" onclick="get_user_manager(this) class="fon">用户管理</a>
                             </li>':""; 
                 ?>
 
                 <li class="sidebar-nav-link">
-                    <a href="#" onclick="get_help(this)">帮助</a>
+                    <a href="#" onclick="get_help(this)" class="fon">帮助</a>
                 </li>
                 <li class="sidebar-nav-link">
                     <div style="padding-top: 900px">

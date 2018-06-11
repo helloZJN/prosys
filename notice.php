@@ -1,56 +1,82 @@
 <?php include_once('conn/Oracle_oci.class.php'); ?>
 <div class="tpl-page-state-title am-text-center tpl-error-title">公告</div>
-<div class="row">     
-	<div class="col-md-6">
+<div style="padding-top: 25px"></div>
+<div class="row" >     
+	<div class="col-md-8" style="left:15%;">
+		<table class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r" width="100%">
+			<thead>
+				<tr>
+					<th width="50%">文章标题</th>
+					<th>作者</th>
+					<th>时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		
+			<tbody>
+				<?php  
+					$page=isset($_GET['page'])?$_GET['page']:1;
+					$dbe=new Oracle_oci();
+					$dbe->conn();
+					if($dbe->conn){
 
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">系统公告</h3>
+						$stid=$dbe->select("select count(*) from info");
+						$pagesize=5;//每页显示条数
+						$totalnum=oci_fetch_row($stid)['0'];//总条数
+						$pagecount=ceil($totalnum/$pagesize);//总页数
+						$lines=0;
+						$lilines=0;
+						$stid=$dbe->select("select a1.* from (select info.*,rownum rn from info order by info.infotime desc) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
+						while($row=oci_fetch_row($stid)){
+							//var_dump($row);
+							echo '
+							<tr class="gradeX">
+								<td>'.$row['3'].'</td>
+								<td>'.$row['1'].'</td>
+								<td>20'.$row['5'].'日</td>
+								<td>
+									<div class="tpl-table-black-operation">
+										<a href="javascript:;" onclick="getmodal(this)" id="'.$lines.'">
+											<i class="am-icon-pencil"></i> 阅读
+										</a>
+									</div>
+								</td>
+							</tr>
 
-			</div>
-			<div class="panel-body">
-				<ul class="nav nav-pills nav-stacked" role="tablist">
-					<?php  
-						$page=isset($_GET['page'])?$_GET['page']:1;
-						$dbe=new Oracle_oci();
-						$dbe->conn();
-						if($dbe->conn){
-
-							$stid=$dbe->select("select count(*) from info");
-							$pagesize=5;//每页显示条数
-							$totalnum=oci_fetch_row($stid)['0'];//总条数
-							$pagecount=ceil($totalnum/$pagesize);//总页数
-							$lines=0;
-							$lilines=0;
-							$stid=$dbe->select("select a1.* from (select info.*,rownum rn from info order by info.infotime desc) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
-							while($row=oci_fetch_row($stid)){
-								//var_dump($row);
-								echo '<li role="presentation"><a href="#" class="alert alert-info"><button type="button" class="badge pull-right" onclick="getmodal(this)" id="'.$lines.'">阅读</button>
-								'.$row['3'].'
-								<a id="infoid'.$lines.'" style="display:none">'.$row['0'].'</a>
-								<a id="teaname'.$lines.'" style="display:none">'.$row['1'].'</a>
-								<a id="teaid'.$lines.'" style="display:none">'.$row['2'].'</a>
-								<a id="title'.$lines.'" style="display:none">'.$row['3'].'</a>
-								<a id="content'.$lines.'" style="display:none">'.$row['4'].'</a>
-								<a id="infotime'.$lines.'" style="display:none">'.$row['5'].'</a>	</a>
-								
-								</li>';
-								$lines=$lines+1;
-								$lilines=$lilines+1;
-							}
+							
+							<a id="infoid'.$lines.'" style="display:none">'.$row['0'].'</a>
+							<a id="teaname'.$lines.'" style="display:none">'.$row['1'].'</a>
+							<a id="teaid'.$lines.'" style="display:none">'.$row['2'].'</a>
+							<a id="title'.$lines.'" style="display:none">'.$row['3'].'</a>
+							<a id="content'.$lines.'" style="display:none">'.$row['4'].'</a>
+							<a id="infotime'.$lines.'" style="display:none">'.$row['5'].'</a>
+							';
+							$lines=$lines+1;
+							$lilines=$lilines+1;
 						}
-						echo "共".$totalnum."条公告&nbsp&nbsp第".$page."页/共".$pagecount."页";
-						echo '<div align="center">';
-							echo $page!=1?'<a href="main.php?content=notice&page=1">首页</a>':'首页';
-							echo $page!=1?'<a href="main.php?content=notice&page='.($page-1).'">上一页</a>':'上一页';
-							echo $page!=$pagecount?'<a href="main.php?content=notice&page='.($page+1).'">下一页</a>':'下一页';
-							echo $page!=$pagecount?'<a href="main.php?content=notice&page='.$pagecount.'">末页</a>':'末页';
-						echo '</div>';
-					?>					
-				</ul>
-			</div>
+					}
+				?>
+			</tbody>
+		</table>
+		<div class="am-u-lg-12 am-cf">
+		<?php 
+			echo "<div>共".$totalnum."条公告&nbsp&nbsp第".$page."页/共".$pagecount."页</div>";
+			echo '<div class="am-u-lg-12 am-cf">
+					<div class="am-fr">
+						<ul class="am-pagination tpl-pagination">';
+				echo '<li><a href="main.php?content=notice&page=1">首页</a></li>';
+				echo $page!=1?'<li><a href="main.php?content=notice&page='.($page-1).'">上一页</a></li>':
+					'<li class="am-disabled"><a href="main.php?content=notice&page='.($page-1).'">上一页</a></li>';
+				echo $page!=$pagecount?'<li><a href="main.php?content=notice&page='.($page+1).'">下一页</a></li>':
+					'<li class="am-disabled"><a href="main.php?content=notice&page='.($page+1).'">下一页</a></li>';
+				echo '<li><a href="main.php?content=notice&page='.$pagecount.'">末页</a></li>';
+			echo '		</ul>
+					</div>
+				</div>
+			';
+		?>
 		</div>
-	</div>
+    </div>	
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top: 50px">
@@ -66,7 +92,7 @@
        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
       </div>
     </div>
   </div>
@@ -84,7 +110,7 @@
 		infotime=$(infotime).text();
 
 		$("#myModalLabel").text(title);
-		$("#notice-user-date").html(teaname+"&nbsp;&nbsp;日期:"+infotime);
+		$("#notice-user-date").html("作者:"+teaname+"&nbsp;&nbsp;&nbsp;&nbsp;日期:20"+infotime+"日");
 		$("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;"+content);
 
 		$('#myModal').modal({
