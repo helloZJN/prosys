@@ -5,37 +5,48 @@
 	$nowtime=time();
 	$nowtime=date("Y-m-d H:i:s",$nowtime);
 ?>
-<h1 class="page-header" id="pageheader">发布公告</h1>
-<div class="row clearfix">
-	<div class="col-md-12 column">
-		<form class="form-horizontal">
-			<div class="form-group">
-				<label for="notice-title" class="col-sm-2 control-label"></label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="notice-title" placeholder="标题" >
-				</div>
+<?php echo '<a style="display: none" id="deliverid">'.$_SESSION["userid"].'</a>'; ?>
+<?php echo '<a style="display: none" id="delievername">'.$_SESSION["username"].'</a>'; ?>
+<?php echo '<a style="display: none" id="delieverinfotime">'.$nowtime.'</a>'; ?>
+
+<div class="widget-head am-cf" >
+	<div class="widget-title am-fl">发布公告</div>
+</div>
+<div class="widget-body am-fr">
+	<div class="col-md-8" style="left:15%;">
+	<form class="am-form tpl-form-line-form" class="col-md-8">
+		<div class="am-form-group">
+			<label for="user-name" class="am-u-sm-3 am-form-label">标题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="tpl-form-line-small-title">Title</span></label>
+			<div class="am-u-sm-9">
+				<input class="tpl-form-input" id="notice-title" placeholder="请输入标题文字" type="text">
 			</div>
-			<?php echo '<a style="display: none" id="deliverid">'.$_SESSION["userid"].'</a>'; ?>
-			<?php echo '<a style="display: none" id="delievername">'.$_SESSION["username"].'</a>'; ?>
-			<?php echo '<a style="display: none" id="delieverinfotime">'.$nowtime.'</a>'; ?>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-6">
-					<textarea rows="10" cols="50" id="notice-content" class="form-control" placeholder="请输入公告内容"></textarea>
-				</div>	
+		</div>
+
+		<div class="am-form-group">
+			<label for="user-intro" class="am-u-sm-3 am-form-label">文章内容
+				<span class="tpl-form-line-small-title">Content</span>
+			</label>
+			<div class="am-u-sm-9">
+				<textarea class="" rows="10" placeholder="请输入文章内容"  id="notice-content"></textarea>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-6">
-				</div>
-				<div class="col-sm-6">
-					<button type="button" class="btn btn-info col-sm-3" onclick="submit_info(this)">发布</button>
-				</div>
+		</div>
+
+		<div class="am-form-group">
+			<div class="am-u-sm-9 am-u-sm-push-3">
+				<button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success" onclick="submit_info()">
+				发布</button>
 			</div>
-		</form>
+		</div>
+	</form>
 	</div>
 </div>
+
+
+
 <script type="text/javascript">
 
-	function submit_info(e){	
+	function submit_info(){	
 		var myDate = new Date();
 		$.ajax({
 			type: "POST",

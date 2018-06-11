@@ -15,7 +15,7 @@
 	$dbe=new Oracle_oci();
 	$dbe->conn();
 	if($dbe->conn){
-		$sql_op="insert into info values('".$infoid."','".$teaname."','".$teaid."','".$title."','".$content."',to_date ('".$infotime."', 'YYYY-MM-DD HH24:MI:SS'),0)";
+		$sql_op="insert into info values('".$infoid."','".$teaname."','".$teaid."','".$title."','".$content."',sysdate,0)";
 		$sql_re=$dbe->insert($sql_op);
 		if($sql_re){
 			echo "发布成功";

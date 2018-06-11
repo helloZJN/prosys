@@ -1,5 +1,7 @@
 <?php include_once('conn/Oracle_oci.class.php'); ?>
-<div class="tpl-page-state-title am-text-center tpl-error-title">公告</div>
+<div class="widget-head am-cf">
+	<div class="widget-title am-fl">公告</div>
+</div>
 <div style="padding-top: 25px"></div>
 <div class="row" >     
 	<div class="col-md-8" style="left:15%;">
@@ -7,7 +9,7 @@
 			<thead>
 				<tr>
 					<th width="50%">文章标题</th>
-					<th>作者</th>
+					<th width="20%">作者</th>
 					<th>时间</th>
 					<th>操作</th>
 				</tr>
@@ -84,11 +86,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">公告</h4>
+        <h4 class="modal-title" id="myModalLabel" style="color:#000000">公告</h4>
       </div>
       <div class="modal-body">
       	<div align="center" id="notice-user-date" style="color:#000000">作者</div>
-      	<div id="notice-content" style="font-size: 25px">这是我发布的公告</div>
+      	<div id="notice-content" style="font-size: 25px;color:#000000" >这是我发布的公告</div>
        
       </div>
       <div class="modal-footer">
@@ -109,9 +111,11 @@
 		var infotime='#infotime'+e.id;
 		infotime=$(infotime).text();
 
+		alert(title);
+
 		$("#myModalLabel").text(title);
-		$("#notice-user-date").html("作者:"+teaname+"&nbsp;&nbsp;&nbsp;&nbsp;日期:20"+infotime+"日");
-		$("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;"+content);
+		$("#notice-user-date").html("作者:"+teaname+"日期:20"+infotime+"日");
+		$("#notice-content").html(content);
 
 		$('#myModal').modal({
             keyboard: true
