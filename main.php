@@ -26,6 +26,9 @@
             margin-right: 30px;
             margin-left: 30px;
         }
+        a.fon{
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -58,6 +61,7 @@
                 </div>
             </div>
         </header>
+        
         <div class="row">
             <div class="left-sidebar">
                 <!-- 用户信息 -->
@@ -75,47 +79,43 @@
 
               <!-- 菜单 -->
                 <ul class="sidebar-nav">
-                
-                <!-- <li class="sidebar-nav-link">
-                    <a href="main.php" class="active">首页</a>
-                </li> -->
 
                 <li class="sidebar-nav-link">
-                    <a href="main.php">首页</a>
+                    <a href="main.php" class="fon">首页</a>
                 </li>
 
                 <?php echo ($_SESSION['usertype']=='teacher_info')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_deliver_notice(this)">发布公告</a>
+                                <a href="#" onclick="get_deliver_notice(this)" class="fon">发布公告</a>
                             </li>':""; 
                 ?>
 
                 <?php echo ($_SESSION['usertype']=='student')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_submit_work(this)">提交作业</a>
+                                <a href="#" onclick="get_submit_work(this)" class="fon">提交作业</a>
                             </li>':""; 
                 ?>
 
                 <?php echo ($_SESSION['usertype']=='student')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_watch_work(this)">查看作业</a>
+                                <a href="#" onclick="get_watch_work(this)" class="fon">查看作业</a>
                             </li>':""; 
                 ?>
 
                 <?php echo ($_SESSION['usertype']=='teacher_info')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_make_dir(this)">文件夹</a>
+                                <a href="#" onclick="get_make_dir(this)" class="fon">文件夹</a>
                             </li>':""; 
                 ?>
 
                 <?php echo ($_SESSION['usertype']=='admin')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_user_manager(this)>用户管理</a>
+                                <a href="#" onclick="get_user_manager(this) class="fon">用户管理</a>
                             </li>':""; 
                 ?>
 
                 <li class="sidebar-nav-link">
-                    <a href="#" onclick="get_help(this)">帮助</a>
+                    <a href="#" onclick="get_help(this)" class="fon">帮助</a>
                 </li>
                 <li class="sidebar-nav-link">
                     <div style="padding-top: 900px">
@@ -154,63 +154,6 @@
 
         </div>
     </div>
-
-
-
-    
-
-    <!-- <div class="left-sidebar">
-        <div class="row">
-
-
-            <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
-                    <li><a href="#">首页</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="#" onclick="get_notice(this)">公告</a></li>
-                    <?php echo ($_SESSION['usertype']=='teacher_info')?'
-                        <li class="sidebar-nav-link">
-                            <a a href="#" onclick="get_deliver_notice(this)">
-                                <i class="am-icon-bar-chart sidebar-nav-link-logo"></i>发布公告
-                            </a>
-                        </li>':""; 
-                    ?>
-                    <?php echo ($_SESSION['usertype']=='student')?'<li><a href="#" onclick="get_submit_work(this)">提交作业</a></li>':""; ?>
-                   
-                    <?php  echo ($_SESSION['usertype']=='student')?'<li><a href="#" onclick="get_watch_work(this)">查看作业</a></li>':""; ?>
-                    
-                    <?php echo ($_SESSION['usertype']=='teacher_info')?'<li><a href="#" onclick="get_make_dir(this)">文件夹</a></li>':""; ?>
-                    
-                    <li><a href="#" onclick="get_per_info(this)">个人信息</a></li>
-                    <?php echo ($_SESSION['usertype']=='admin')?'<li><a href="#" onclick="get_user_manager(this)">用户管理</a></li>':""; ?>
-                    
-                    <li><a href="#" onclick="get_help(this)">帮助</a></li>
-                </ul>
-            </div>
-
-
-
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">           
-                <?php 
-                    $content = isset($_GET['content']) ? trim(strtolower($_GET['content'])) : "notice";
-                    $allowedPages = array(
-                        'notice'     => 'notice.php',
-                        'about'    => 'about.php',
-                        'delivernotice' => 'deliver_notice.php',
-                        'submit_work' => 'submit_work.php',
-                        'watch_work' => 'watch_work.php',
-                        'tea_dir' => 'tea_dir.php',
-                        'per_info' => 'per_info.php',
-                        'user_manager' => 'user_manager.php'
-                    );
-                    include(isset($allowedPages[$content]) ? $allowedPages[$content] : $allowedPages["notice"]);
-                ?>
-            </div>
-
-
-        </div>
-    </div> -->
 
     <script type="text/javascript">
         function get_notice(argument) {
