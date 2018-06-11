@@ -129,7 +129,7 @@
 	</div>
 </div>
 <!-- 模态框 -->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="padding-top: 50px">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
