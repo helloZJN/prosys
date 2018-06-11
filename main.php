@@ -72,7 +72,6 @@ body {
             </div>
             <form class="navbar-form navbar-right" role="search">
                 <h3><?php echo $_SESSION['usertype']; ?></h3>
-                <button type="submit" class="btn btn-default">登录</button>
             </form>
             </div>
         </div>
