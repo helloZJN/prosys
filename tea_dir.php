@@ -75,7 +75,6 @@
 	function make_dir(e){
 		var myDate = new Date();
 		if($("#foldername").val()==""){
-			+
 			alert("文件夹名不能为空");
 			return false;
 		}
@@ -91,7 +90,7 @@
 					if(data=="创建成功"){
 						window.location="main.php?content=tea_dir";
 					}else if(data=="文件夹已存在") {
-						
+						alert(data);
 					}else{
 						
 					}
