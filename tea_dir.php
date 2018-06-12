@@ -23,15 +23,14 @@
 	    <div class="am-u-sm-12 am-u-md-12 am-u-lg-6">
 		    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
 	            <div class="am-form-group tpl-table-list-select" >
-	                <select data-am-selected="{btnSize: 'sm'}" id="" style="width: 200px">
+	                <select  style="width: 200px" id="folder-select" onchange="selectchange()">
+	                <option value="" selected disabled></option>
 		                <?php 
 			            	$dbe=new Oracle_oci();
 							$dbe->conn();
 							if($dbe->conn){
 								$stid=$dbe->select("select * from folder where teaid='".$_SESSION['userid']."'");
-
 								while($row=oci_fetch_array($stid)){
-									//var_dump($row);
 									echo '<option value="'.$row['0'].'">'.$row['1'].'</option>';
 								}
 								$dbe->close();
@@ -53,24 +52,48 @@
             </div>
 	    </div>
 	</form>
+
 	</div>
 </div>
 
+<div class="widget-head am-cf" >
+	<div class="widget-title am-fl">文件操作</div>
+</div>
+<div class="widget-body am-fr">
+	<div class="col-md-8" style="left:15%;">
+	<form class="am-form tpl-form-line-form" class="col-md-8">
+	<table class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r" width="100%">
+		<thead>
+			<tr>
+				<th width="50%">文件名</th>
+				<th width="20%">作者</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody id="stu_work">
+			
+		</tbody>
+
+	</table>
+	</form>
+	</div>
+</div>
 
 <script type="text/javascript">
-	function selectOnchang(obj){
-		var value = obj.options[obj.selectedIndex].val();
-		
+	function selectchange(){
+		var value = $("#folder-select").val();
+
 		$.ajax({
-				type: "POST",    
-				url: "getstuwork.php",    
-				data: {
-					foldid:value,
-					},
-				success: function(data){ 
-					$("stu_work").html(data);	
-				}
-			}); 
+			type: "POST",    
+			url: "getstuwork.php",    
+			data: {
+				foldid:value,
+				},
+			success: function(data){ 
+				alert(data);
+				$("#stu_work").html(data);
+			}
+		});
 	}
 	function make_dir(e){
 		var myDate = new Date();
@@ -91,11 +114,8 @@
 						window.location="main.php?content=tea_dir";
 					}else if(data=="文件夹已存在") {
 						alert(data);
-					}else{
-						
 					}
 				}
-			}); 
-
+		}); 
 	}
 </script>
