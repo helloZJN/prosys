@@ -34,12 +34,12 @@ create table info(
 	readtimes int
 );
 create table stufile(
-	fileid varchar(20) primary key,
+	fileid varchar(2000) primary key,
 	teaid varchar(20),
 	stuid varchar(20),
 	folderid varchar(20),
-	foldername varchar(20),
-	filepath varchar(50)
+	foldername varchar(2000),
+	filepath varchar(2000)
 );
 create table folder(
 	foldid varchar(20) primary key,

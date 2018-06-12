@@ -12,6 +12,7 @@ if($dbe->conn){
 	$sql_op="select * from stufile where folderid='".$foldid."'";
 	$sql_re=$dbe->select($sql_op);
 	if($sql_re){
+		$numfile=0;
 		while($row=oci_fetch_array($sql_re)){
 			echo '
         		<tr class="gradeX">
@@ -19,16 +20,22 @@ if($dbe->conn){
 					<td>'.$row['2'].'</td>
 					<td>
 						<div class="tpl-table-black-operation">
-							<a href="javascript:;">
+							<a id="file'.$numfile.'" onclick="downloadfile(this)">
 								<i class="am-icon-pencil"></i>下载
 							</a>
-							<a href="javascript:;" class="tpl-table-black-operation-del">
+							<a id="del'.$numfile.'" onclick="deletefile(this)" class="tpl-table-black-operation-del">
 								<i class="am-icon-trash"></i> 删除
 							</a>
+							<a style="display:none" id="namefile'.$numfile.'">'.$row['0'].'</a>
+							<a style="display:none" id="pathfile'.$numfile.'">'.$row['5'].'</a>
+							<a style="display:none" id="namedel'.$numfile.'">'.$row['0'].'</a>
+							<a style="display:none" id="pathdel'.$numfile.'">'.$row['5'].'</a>
 						</div>
 					</td>
 				</tr>
+
 			';
+			$numfile=$numfile+1;
 		}
 	}else{
 		echo "失败";
@@ -37,17 +44,5 @@ if($dbe->conn){
 }else {
 	echo "数据库连接失败";
 }
-// <div class="col-md-2">
-     //          			<h2>Heading</h2>
-     //          			<p>'.$row['0'].'</p>
-     //          			<p>'.$row['1'].'</p>
-     //          			<p>'.$row['2'].'</p>
-     //          			<p>'.$row['3'].'</p>
-     //          			<p>'.$row['4'].'</p>
-     //          			<p>'.$row['5'].'</p>
-     //          			<p>'.$row['6'].'</p>
-     //          			<p>'.$row['7'].'</p>
-     //          			<button>下载</button>
-     //          			<button>删除</button>
-     //        		</div>
+
 ?>

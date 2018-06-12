@@ -62,7 +62,7 @@
 <div class="widget-body am-fr">
 	<div class="col-md-8" style="left:15%;">
 	<form class="am-form tpl-form-line-form" class="col-md-8">
-	<table class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r" width="100%">
+	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" width="100%">
 		<thead>
 			<tr>
 				<th width="50%">文件名</th>
@@ -90,7 +90,6 @@
 				foldid:value,
 				},
 			success: function(data){ 
-				alert(data);
 				$("#stu_work").html(data);
 			}
 		});
@@ -118,4 +117,46 @@
 				}
 		}); 
 	}
+	function downloadfile(argument) {
+		var index=argument.id;
+		var filenameindex="#name"+index;
+		var filename=$(filenameindex).text();
+		var filepathindex="#path"+index;
+		var filepath=$(filepathindex).text();
+		var url="download.php";  
+		var form=$("<form></form>");  
+		form.attr("action",url);  
+		form.attr("method","post");  
+		var inputfile_name=$("<input type='text' name='file_name'/>");  
+		inputfile_name.attr("value",filename);  
+		var inputfile_path=$("<input type='text' name='file_dir'/>");  
+		inputfile_path.attr("value",filepath);   
+		form.append(inputfile_name);  
+		form.append(inputfile_path);  
+		form.appendTo("body");    
+		form.hide();  
+		form.submit();
+	}
+
+	function deletefile(argument){
+		var index=argument.id;
+		var filenameindex="#name"+index;
+		var filename=$(filenameindex).text();
+		var filepathindex="#path"+index;
+		var filepath=$(filepathindex).text();
+		filepath=filepath+"/"+filename;
+		$.ajax({
+			type: "POST",
+			url: "delfile.php",
+			data: {
+				filepath:filepath,
+				filename:filename
+			},
+			success: function(res) {
+				alert(res);
+				selectchange();
+			}
+		});
+	}
+
 </script>
