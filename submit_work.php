@@ -55,45 +55,17 @@
 			}); 
 	}
 	function submit_work(obj){
-		var myDate = new Date();
-		// var data = new FormData($('#form1')[0]);
-		// $.ajax({
-		// 		type: "POST",    
-		// 		url: "submitwork.php",    
-		// 		data: {
-		// 			fileid:myDate.getTime(),
-		// 			teaid:$("#selecttea option:selected").val(),
-		// 			stuid:$('#submituserid').val(),
-		// 			foldid:$("#selectfold option:selected").val(),
-		// 			foldname:$("#selectfold option:selected").text(),
-		// 			filecontent:$('#txt_file'),
-		// 			},
-		// 		success: function(data){ 
-		// 			alert(data);
-		// 		}
-		// 	});
 		var xhr = new XMLHttpRequest();
         xhr.open('post', 'submitwork.php');
         xhr.onload = function () {
-            console.log(xhr.responseText);
+        	alert(xhr.responseText);
         }
-        // // XHR2.0新增 上传进度监控
-        // xhr.upload.onprogress = function (event) {
-        //     //  console.log(event);
-        //     var percent = event.loaded / event.total * 100 + '%';
-        //     console.log(percent);
-        //     // 设置 进度条内部step的 宽度
-        //     document.querySelector('.step').style.width = percent;
-        // }
-        // XHR2.0新增 
         var data = new FormData();
-        data.append("fileid",myDate.getTime());
         data.append("teaid",$("#selecttea option:selected").val());
-        data.append("stuid",$('#submituserid').val());
+        data.append("stuid",$('#submituserid').text());
         data.append("foldid",$("#selectfold option:selected").val());
         data.append("foldname",$("#selectfold option:selected").text());
         data.append("file",$("#txt_file")[0].files[0]);
-        //4.请求主体发送(get请求为空，或者写null，post请求数据写在这里，如果没有数据，直接为空或者写null)
         xhr.send(data); 
 	}
 </script>
