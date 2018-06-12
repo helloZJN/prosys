@@ -28,7 +28,9 @@
 		$dbe->close();
 	}
 ?>
-<h1 class="page-header" id="pageheader">个人信息</h1>
+<div class="widget-head am-cf">
+	<div class="widget-title am-fl"><span style="font-size: 30px">个人信息</span></div>
+</div>
 <div class="row clearfix">
 	<div class="col-md-3 column">
 	</div>

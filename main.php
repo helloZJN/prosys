@@ -72,7 +72,7 @@
                         </div>
                         <span class="user-panel-logged-in-text">
                           <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-                          <?php echo $_SESSION['username']; ?>
+                          <?php echo $_SESSION['username']=="admin"?"admin":$_SESSION['username']; ?>
                       </span>
                   </div>
                 </div>

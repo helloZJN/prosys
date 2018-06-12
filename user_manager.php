@@ -15,131 +15,141 @@
 	<div class="widget-title am-fl"><span style="font-size: 30px">用户管理</span></div>
 </div>
 <!-- 老师管理 -->
-<div class="row">     
-	<div class="col-md-6">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">老师管理</h3>
-			</div>
-			<div class="col-md-8" style="left:15%;">
-				<table class="am-table am-table-compact am-table-striped tpl-table-black " width="100%">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>工号</th>
-							<th>姓名</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php
+<div class="am-u-sm-12 am-u-md-12 am-u-lg-6">
+    <div class="widget am-cf">
+        <div class="widget-head am-cf">
+            <div class="widget-title am-fl">老师管理</div>
+        </div>
+		<div class="col-md-12">
+			<table class="am-table am-table-compact am-table-striped tpl-table-black " width="100%" >
+				<thead>
+					<tr>
+						<th width="10%">#</th>
+						<th width="40%">工号</th>
+						<th width="20%">姓名</th>
+						<th>修改</th>
+						<th>删除</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
 
-							$dbe=new Oracle_oci();
-							$dbe->conn();
-							if($dbe->conn){
+						$dbe=new Oracle_oci();
+						$dbe->conn();
+						if($dbe->conn){
 
-								$stid=$dbe->select("select count(*) from teacher_info");
-								$pagesize=5;//每页显示条数
-								$totalnum=oci_fetch_row($stid)['0'];//总条数
-								$pagecount=ceil($totalnum/$pagesize);//总页数
-								$stid=$dbe->select("select a1.* from (select teacher_info.*,rownum rn from teacher_info) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
-								while($row=oci_fetch_array($stid)){
-									//var_dump($row);
-									echo '<tr class="gradeX>
-										<td>'.($tealines+1).'</td>
-										<td>'.$row['0'].'</td>
-										<td>'.$row['1'].'</td>
-										<td>
-											
-											<div class="tpl-table-black-operation">
-											<a href="javascript:;" onclick="updateuser(this)" id="'.$tealines.'">
-												<i class="am-icon-pencil"></i> 修改
-											</a>
-											</div>
-										</td>
-										<td>
-										<button type="button" class="badge pull-right" id="'.$tea_del_lines.'" onclick="deluser(this)">删除</button>
-										</td>
-									</tr>
-									<a id="teaid'.$tealines.'" style="display:none">'.$row['0'].'</a>
-									<a id="teaname'.$tealines.'" style="display:none">'.$row['1'].'</a>
-									<a id="teapwd'.$tealines.'" style="display:none">'.$row['3'].'</a>';
-									$tealines=$tealines+1;
-									$tea_del_lines=$tea_del_lines+1;
-								}
-								$dbe->close();
-							}
-							echo "<tr><th colspan='5'>共".$totalnum."条信息&nbsp&nbsp第".$page."页/共".$pagecount."页</th></tr>";
-							echo '<tr><th colspan="5"><div align="center">';
-							echo $page!=1?'<a href="main.php?content=user_manager&page=1">首页</a>':'首页';
-							echo $page!=1?'<a href="main.php?content=user_manager&page1='.$page1.'&page='.($page-1).'">上一页</a>':'上一页';
-							echo $page!=$pagecount?'<a href="main.php?content=user_manager&page1='.$page1.'&page='.($page+1).'">下一页</a>':'下一页';
-							echo $page!=$pagecount?'<a href="main.php?content=user_manager&page1='.$page1.'&page='.$pagecount.'">末页</a>':'末页';
-							echo '</div></th></tr>';
-						?>	
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-<!-- 	学生管理 -->
-	<div class="col-md-6">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">学生管理</h3>
-			</div>
-			<div class="panel-body">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>学号</th>
-							<th>姓名</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php
-							
-							$dbe=new Oracle_oci();
-							$dbe->conn();
-							if($dbe->conn){
-
-								$stid=$dbe->select("select count(*) from student");
-								$pagesize=5;//每页显示条数
-								$totalnum=oci_fetch_row($stid)['0'];//总条数
-								$pagecount=ceil($totalnum/$pagesize);//总页数
-								$stid=$dbe->select("select a1.* from (select student.*,rownum rn from student) a1 where rn between ".(($page1-1)*$pagesize+1)." and ".$page1*$pagesize);
-								while($row=oci_fetch_array($stid)){
-									//var_dump($row);
-									echo '<tr><td>'.($stulines+1-100).'</td>
+							$stid=$dbe->select("select count(*) from teacher_info");
+							$pagesize=5;//每页显示条数
+							$totalnum=oci_fetch_row($stid)['0'];//总条数
+							$pagecount=ceil($totalnum/$pagesize);//总页数
+							$stid=$dbe->select("select a1.* from (select teacher_info.*,rownum rn from teacher_info) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
+							while($row=oci_fetch_array($stid)){
+								//var_dump($row);
+								echo '
+								<tr class="even gradeC">
+									<td>'.($tealines+1).'</td>
 									<td>'.$row['0'].'</td>
 									<td>'.$row['1'].'</td>
-									<td><button type="button" class="badge pull-right" onclick="updateuser(this)" id="'.$stulines.'">修改</button></td>
-									<td><button type="button" class="badge pull-right" onclick="deluser(this)" id="'.$stu_del_lines.'">删除</button></td></tr>
-									<a id="stuid'.$stulines.'" style="display:none">'.$row['0'].'</a>
-									<a id="stuname'.$stulines.'" style="display:none">'.$row['1'].'</a>
-									<a id="stupwd'.$stulines.'" style="display:none">'.$row['3'].'</a>';
-									$stulines=$stulines+1;
-									$stu_del_lines=$stu_del_lines+1;
-								}
-								$dbe->close();
+									<td>
+										<a onclick="updateuser(this)" id="'.$tealines.'">
+											<i class="am-icon-pencil"></i> 修改
+										</a>
+									</td>
+									<td>
+										<a class="tpl-table-black-operation-del" id="'.$tea_del_lines.'" onclick="deluser(this)">
+	                                    	<i class="am-icon-trash"></i> 删除
+	                               		</a>
+									</td>
+								</tr>
+								<span id="teaid'.$tealines.'" style="display:none">'.$row['0'].'</span>
+								<span id="teaname'.$tealines.'" style="display:none">'.$row['1'].'</span>
+								<span id="teapwd'.$tealines.'" style="display:none">'.$row['3'].'</span>';
+								$tealines=$tealines+1;
+								$tea_del_lines=$tea_del_lines+1;
 							}
-							echo "<tr><th colspan='5'>共".$totalnum."条信息&nbsp&nbsp第".$page1."页/共".$pagecount."页</th></tr>";
-							echo '<tr><th colspan="5"><div align="center">';
-							echo $page1!=1?'<a href="main.php?content=user_manager&page='.$page.'&page1=1">首页</a>':'首页';
-							echo $page1!=1?'<a href="main.php?content=user_manager&page='.$page.'&page1='.($page1-1).'">上一页</a>':'上一页';
-							echo $page1!=$pagecount?'<a href="main.php?content=user_manager&page='.$page.'&page1='.($page1+1).'">下一页</a>':'下一页';
-							echo $page1!=$pagecount?'<a href="main.php?content=user_manager&page='.$page.'&page1='.$pagecount.'">末页</a>':'末页';
-							echo '</div></th></tr>';
-						?>	
-					</tbody>
-				</table>
-			</div>
+							$dbe->close();
+						}
+						echo "<tr><th colspan='5'>共".$totalnum."条信息&nbsp&nbsp第".$page."页/共".$pagecount."页</th></tr>";
+						echo '<tr><th colspan="5"><div align="center">';
+						echo $page!=1?'<a href="main.php?content=user_manager&page=1">首页</a>':'首页';
+						echo $page!=1?'<a href="main.php?content=user_manager&page1='.$page1.'&page='.($page-1).'">上一页</a>':'上一页';
+						echo $page!=$pagecount?'<a href="main.php?content=user_manager&page1='.$page1.'&page='.($page+1).'">下一页</a>':'下一页';
+						echo $page!=$pagecount?'<a href="main.php?content=user_manager&page1='.$page1.'&page='.$pagecount.'">末页</a>':'末页';
+						echo '</div></th></tr>';
+					?>	
+				</tbody>
+			</table>
 		</div>
 	</div>
+</div>
+<!-- 学生管理 -->
+<div class="am-u-sm-12 am-u-md-12 am-u-lg-6">
+    <div class="widget am-cf">
+        <div class="widget-head am-cf">
+            <div class="widget-title am-fl">学生管理</div>
+        </div>
+        <div class="col-md-12" >
+            <table class="am-table am-table-compact am-table-striped tpl-table-black " width="100%">
+                <thead>
+                    <tr>
+                        <th width="10%">#</th>
+                        <th width="40%">学号</th>
+                        <th width="20%">姓名</th>
+                        <th>修改</th>
+                        <th>删除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                        $dbe=new Oracle_oci();
+                        $dbe->conn();
+                        if($dbe->conn){
+
+                            $stid=$dbe->select("select count(*) from student");
+                            $pagesize=5;//每页显示条数
+                            $totalnum=oci_fetch_row($stid)['0'];//总条数
+                            $pagecount=ceil($totalnum/$pagesize);//总页数
+                            $stid=$dbe->select("select a1.* from (select student.*,rownum rn from student) a1 where rn between ".(($page1-1)*$pagesize+1)." and ".$page1*$pagesize);
+                            while($row=oci_fetch_array($stid)){
+                                //var_dump($row);
+                                echo '
+                                <tr class="even gradeC">
+                                    <td>'.($stulines+1-100).'</td>
+                                    <td>'.$row['0'].'</td>
+                                    <td>'.$row['1'].'</td>
+                                    <td>
+                                        <a onclick="updateuser(this)" id="'.$stulines.'">
+                                            <i class="am-icon-pencil"></i> 修改
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="tpl-table-black-operation-del" id="'.$stu_del_lines.'" onclick="deluser(this)">
+                                            <i class="am-icon-trash"></i> 删除
+                                        </a>
+                                    </td>
+                                </tr>
+                                <span id="stuid'.$stulines.'" style="display:none">'.$row['0'].'</span>
+                                <span id="stuname'.$stulines.'" style="display:none">'.$row['1'].'</span>
+                                <span id="stupwd'.$stulines.'" style="display:none">'.$row['3'].'</span>';
+                                $stulines=$stulines+1;
+                                    $stu_del_lines=$stu_del_lines+1;
+                            }
+                            $dbe->close();
+                        }
+                        echo "<tr><th colspan='5'>共".$totalnum."条信息&nbsp&nbsp第".$page1."页/共".$pagecount."页</th></tr>";
+                        echo '<tr><th colspan="5"><div align="center">';
+                        echo $page1!=1?'<a href="main.php?content=user_manager&page='.$page.'&page1=1">首页</a>':'首页';
+                        echo $page1!=1?'<a href="main.php?content=user_manager&page='.$page.'&page1='.($page1-1).'">上一页</a>':'上一页';
+                        echo $page1!=$pagecount?'<a href="main.php?content=user_manager&page='.$page.'&page1='.($page1+1).'">下一页</a>':'下一页';
+                        echo $page1!=$pagecount?'<a href="main.php?content=user_manager&page='.$page.'&page1='.$pagecount.'">末页</a>':'末页';
+                        echo '</div></th></tr>';
+                       
+                    ?>  
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <!-- 模态框 -->
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="padding-top: 50px">

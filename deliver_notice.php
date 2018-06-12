@@ -9,8 +9,8 @@
 <?php echo '<a style="display: none" id="delievername">'.$_SESSION["username"].'</a>'; ?>
 <?php echo '<a style="display: none" id="delieverinfotime">'.$nowtime.'</a>'; ?>
 
-<div class="widget-head am-cf" >
-	<div class="widget-title am-fl">发布公告</div>
+<div class="widget-head am-cf">
+	<div class="widget-title am-fl"><span style="font-size: 30px">发布公告</span></div>
 </div>
 <div class="widget-body am-fr">
 	<div class="col-md-8" style="left:15%;">

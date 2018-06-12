@@ -5,7 +5,7 @@
 <div style="padding-top: 25px"></div>
 <div class="row" >     
 	<div class="col-md-8" style="left:15%;">
-		<table class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r" width="100%">
+		<table class="am-table am-table-compact am-table-striped tpl-table-black " width="100%">
 			<thead>
 				<tr>
 					<th width="50%">文章标题</th>

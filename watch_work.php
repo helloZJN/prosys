@@ -5,7 +5,7 @@
 ?>
 
 <div class="widget-head am-cf">
-	<div class="widget-title am-fl"><span style="font-size: 30px">提交作业</span></div>
+	<div class="widget-title am-fl"><span style="font-size: 30px">查看作业</span></div>
 </div>
 
 <div class="widget-body am-fr">

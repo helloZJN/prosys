@@ -5,7 +5,7 @@
 ?>
 <?php echo "<a style='display:none' id='mkdir_id'>".$_SESSION['userid']."</a>"; ?>
 <div class="widget-head am-cf" >
-	<div class="widget-title am-fl">文件夹</div>
+	<div class="widget-title am-fl" style="font-size: 30px">文件夹</div>
 </div>
 <div class="widget-body am-fr">
 	<div class="col-md-8" style="left:15%;">
@@ -41,15 +41,6 @@
 		            <small>选择文件夹</small> 
 		        </div>
 	        </div>
-	        <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
-                <div class="am-form-group">
-                    <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-s">
-                            <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 	    </div>
 	</form>
 
@@ -57,7 +48,7 @@
 </div>
 
 <div class="widget-head am-cf" >
-	<div class="widget-title am-fl">文件操作</div>
+	<div class="widget-title am-fl" style="font-size: 30px">文件操作</div>
 </div>
 <div class="widget-body am-fr">
 	<div class="col-md-8" style="left:15%;">

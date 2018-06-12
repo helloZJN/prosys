@@ -1,24 +1,46 @@
-<h1 class="page-header" id="pageheader">帮助</h1>
-<div class="row">     
-	<div class="col-md-6">
-		<!--—panel面板，里面放置一些控件，下同---->
-		<div class="panel panel-primary">
-			<!--—panel面板的标题，下同---->
-			<div class="panel-heading">
-				<h3 class="panel-title">最新提醒</h3>
+
+<div class="widget-head am-cf">
+	<div class="widget-title am-fl"><span style="font-size: 30px">
+		帮助
+	</span></div>
+</div>
+
+<div class="row-content am-cf" >
+	<div class="row  am-cf">
+		<div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+			<div class="widget widget-primary am-cf">
+				<div class="widget-statistic-header">
+					有问题？请找
+				</div>
+				<div class="widget-statistic-body">
+					<div class="widget-statistic-value">
+						邱盼威
+					</div>
+					<div class="widget-statistic-description">
+						<strong>585619</strong>
+					</div>
+					<span class="widget-statistic-icon am-icon-support"></span>
+				</div>
 			</div>
-			<!--—panel面板的内容，下同---->
-			<div class="panel-body">
-				<div class="alert alert-success" role="alert">
-					<strong>提示</strong>您的订单（2014001）已经审批通过！
+		</div>
+		<div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+			<div class="widget widget-purple am-cf">
+				<div class="widget-statistic-header">
+					或是
 				</div>
-				<div class="alert alert-danger" role="alert">
-					<strong>提示</strong>您的订单（2014002）被打回！
-				</div>
-				<div class="alert alert-warning" role="alert">
-					<strong>提示</strong>您的订单（2013001）客户付款延迟！
+				<div class="widget-statistic-body">
+					<div class="widget-statistic-value">
+						张晋南
+					</div>
+					<div class="widget-statistic-description">
+						<strong>585585</strong>
+					</div>
+					<span class="widget-statistic-icon am-icon-support"></span>
 				</div>
 			</div>
+		</div>
+		<div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+			
 		</div>
 	</div>
 </div>
