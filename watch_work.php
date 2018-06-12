@@ -3,41 +3,59 @@
 		echo "<script>alert('你没有权限进入该页面！即将跳转到登陆界面');window.location.href='index.php';</script>";
 	}
 ?>
-<h1 class="page-header" id="pageheader">查看作业</h1>
-<div class="row">     
-	<div class="col-md-6">
-		<!--—panel面板，里面放置一些控件，下同---->
-		<div class="panel panel-primary">
-			<!--—panel面板的标题，下同---->
-			<div class="panel-heading">
-				<h3 class="panel-title">最新提醒</h3>
-			</div>
-			<!--—panel面板的内容，下同---->
-			<div class="panel-body">
-				<?php 
-					$dbe=new Oracle_oci();
-					$dbe->conn();
-					$numfile=0;
-					if($dbe->conn){
-						$sql_op="select * from stufile where stuid='".$_SESSION['userid']."'";
-						$sql_re=$dbe->select($sql_op);
-						if($sql_re){
-							while($row=oci_fetch_row($sql_re)){
-								echo '<div class="alert alert-success" role="alert">';
-								echo '<strong>'.$row['0'].'</strong><button class="btn btn-primary pull-right" id=file'.$numfile.' onclick="downloadfile(this)">下载</button>';
-								echo '</div>';
-								echo '<a style="display:none" id="namefile'.$numfile.'">'.$row['0'].'</a>';
-								echo '<a style="display:none" id="pathfile'.$numfile.'">'.$row['5'].'</a>';
-								$numfile=$numfile+1;
-							}
-						}
-						$dbe->close();
-					}
-				 ?>
-			</div>
-		</div>
+
+<div class="widget-head am-cf">
+	<div class="widget-title am-fl"><span style="font-size: 30px">提交作业</span></div>
+</div>
+
+<div class="widget-body am-fr">
+	<div class="col-md-8" style="left:15%;">
+	<form class="am-form tpl-form-line-form" class="col-md-8">
+	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" width="100%">
+		<thead>
+			<tr>
+				<th width="50%">文件名</th>
+				<th width="20%">作者</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+<?php 
+	$dbe=new Oracle_oci();
+	$dbe->conn();
+	if($dbe->conn){
+		$sql_op="select * from stufile where stuid='".$_SESSION['userid']."'";
+		$sql_re=$dbe->select($sql_op);
+		if($sql_re){
+			$numfile=0;
+			while($row=oci_fetch_array($sql_re)){
+				echo '
+	        		<tr class="gradeX">
+						<td>'.$row['0'].'</td>
+						<td>'.$row['2'].'</td>
+						<td>
+							<div class="tpl-table-black-operation">
+								<a id="file'.$numfile.'" onclick="downloadfile(this)">
+									<i class="am-icon-pencil"></i>下载
+								</a>
+								<span style="display:none" id="namefile'.$numfile.'">'.$row['0'].'</span>
+								<span style="display:none" id="pathfile'.$numfile.'">'.$row['5'].'</span>
+							</div>
+						</td>
+					</tr>
+				';
+				$numfile=$numfile+1;
+			}
+			$dbe->close();
+		}
+	}
+?>
+		</tbody>
+	</table>
+	</form>
 	</div>
 </div>
+
 <script type="text/javascript">
 	function downloadfile(argument) {
 		var index=argument.id;
@@ -57,9 +75,6 @@
 		form.append(inputfile_path);  
 		form.appendTo("body");    
 		form.hide();  
-		form.submit(); 
+		form.submit();
 	}
-
-
-
 </script>

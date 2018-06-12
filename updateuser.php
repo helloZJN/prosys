@@ -5,7 +5,7 @@
 	$username=$_POST['username'];
 	$userpwd=$_POST['userpwd'];
 	// echo "$userid $table $username $userpwd";
-	
+	session_start();
 	include_once('conn/Oracle_oci.class.php');
 	$dbe=new Oracle_oci();
 	$dbe->conn();
@@ -18,6 +18,7 @@
 		}
 		
 		$dbe->close();
+		$_SESSION['username']=$username;
 		echo "yes";
 	}else {
 		echo "no";

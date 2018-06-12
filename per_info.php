@@ -53,15 +53,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="userpwd" class="col-sm-2 control-label">密码</label>
+				<label for="userpwd" class="col-sm-2 control-label">新密码</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="userpwd" placeholder="密码" value="<?php echo($userpwd); ?>">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="userpwd" class="col-sm-2 control-label">密码</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="userpwd" placeholder="密码" value="<?php echo($userpwd); ?>">
+					<input type="text" class="form-control" id="userpwd" placeholder="密码">
 				</div>
 			</div>
 			<div class="form-group">
@@ -78,6 +72,10 @@
 </div>
 <script type="text/javascript">
 	function submit_update(){
+		if($("#userpwd").val()<6){
+			alert('密码要不少于6位');
+			
+		}
 		$.ajax({
 			type: "POST",
 			url: "updateuser.php",
@@ -88,6 +86,7 @@
 			success: function(res) {
 				if(res=="yes"){
 					alert("修改成功");
+
 					window.location.href="main.php?content=per_info";
 				}else {
 					alert("修改失败");

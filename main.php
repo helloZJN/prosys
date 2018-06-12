@@ -49,7 +49,7 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span><?php echo $_SESSION['usertype']; ?></span> </a>
+                            <a href="javascript:;">欢迎你, <span><?php echo $_SESSION['userid']; ?></span> </a>
                         </li>
                         <!-- 退出 -->
                         <li class="am-text-sm">
@@ -72,7 +72,7 @@
                         </div>
                         <span class="user-panel-logged-in-text">
                           <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-                          ZJN
+                          <?php echo $_SESSION['username']; ?>
                       </span>
                   </div>
                 </div>
@@ -115,7 +115,7 @@
                 
                 <?php echo ($_SESSION['usertype']=='admin')?'
                             <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_user_manager(this) class="fon">用户管理</a>
+                                <a href="#" onclick="get_user_manager(this)" class="fon">用户管理</a>
                             </li>':""; 
                 ?>
 

@@ -1,6 +1,6 @@
 <?php include_once('conn/Oracle_oci.class.php'); ?>
 <div class="widget-head am-cf">
-	<div class="widget-title am-fl">公告</div>
+	<div class="widget-title am-fl"><span style="font-size: 30px">公告</span></div>
 </div>
 <div style="padding-top: 25px"></div>
 <div class="row" >     
@@ -45,13 +45,14 @@
 								</td>
 							</tr>
 
+
 							
-							<a id="infoid'.$lines.'" style="display:none">'.$row['0'].'</a>
-							<a id="teaname'.$lines.'" style="display:none">'.$row['1'].'</a>
-							<a id="teaid'.$lines.'" style="display:none">'.$row['2'].'</a>
-							<a id="title'.$lines.'" style="display:none">'.$row['3'].'</a>
-							<a id="content'.$lines.'" style="display:none">'.$row['4'].'</a>
-							<a id="infotime'.$lines.'" style="display:none">'.$row['5'].'</a>
+							<span id="infoid'.$lines.'" style="display:none">'.$row['0'].'</span>
+							<span id="teaname'.$lines.'" style="display:none">'.$row['1'].'</span>
+							<span id="teaid'.$lines.'" style="display:none">'.$row['2'].'</span>
+							<span id="title'.$lines.'" style="display:none">'.$row['3'].'</span>
+							<span id="content'.$lines.'" style="display:none">'.$row['4'].'</span>
+							<span id="infotime'.$lines.'" style="display:none">'.$row['5'].'</span>
 							';
 							$lines=$lines+1;
 							$lilines=$lilines+1;

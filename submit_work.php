@@ -3,16 +3,17 @@
 		echo "<script>alert('你没有权限进入该页面！即将跳转到登陆界面');window.location.href='index.php';</script>";
 	}
 ?>
-<h1 class="page-header" id="pageheader">提交作业</h1>
+<div class="widget-head am-cf">
+	<div class="widget-title am-fl"><span style="font-size: 30px">提交作业</span></div>
+</div>
 <div class="row">     
 	<div class="col-md-3">
 		
 	</div>
 	<div class="col-md-6">
 		<form enctype="multipart/form-data">
-			<legend>提交</legend>
-		
-			<div class="form-group">
+
+			<div class="form-group" style="padding-top: 30px">
 				<label for="selecttea">选择老师</label>
 				<select name="selecttea" id="selecttea" class="form-control" onchange="selectteaOnchang(this)" required>
 					<option value="" disabled selected></option>
@@ -39,7 +40,7 @@
 		</form>
 	</div>
 </div>
-<?php echo '<a style="display:none" id="submituserid">'.$_SESSION['userid'].'</a>'; ?>
+<?php echo '<span style="display:none" id="submituserid" >'.$_SESSION['userid'].'</span>'; ?>
 <script type="text/javascript">
 	function selectteaOnchang(obj){
 		var value = obj.options[obj.selectedIndex].value;

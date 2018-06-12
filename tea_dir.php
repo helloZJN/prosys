@@ -82,7 +82,6 @@
 <script type="text/javascript">
 	function selectchange(){
 		var value = $("#folder-select").val();
-
 		$.ajax({
 			type: "POST",    
 			url: "getstuwork.php",    

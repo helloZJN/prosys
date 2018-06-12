@@ -11,7 +11,9 @@
 	$stulines=100;
 	$stu_del_lines=150;
 ?>
-<h1 class="page-header" id="pageheader">用户管理</h1>
+<div class="widget-head am-cf">
+	<div class="widget-title am-fl"><span style="font-size: 30px">用户管理</span></div>
+</div>
 <!-- 老师管理 -->
 <div class="row">     
 	<div class="col-md-6">
@@ -19,8 +21,8 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">老师管理</h3>
 			</div>
-			<div class="panel-body">
-				<table class="table table-striped">
+			<div class="col-md-8" style="left:15%;">
+				<table class="am-table am-table-compact am-table-striped tpl-table-black " width="100%">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -44,11 +46,22 @@
 								$stid=$dbe->select("select a1.* from (select teacher_info.*,rownum rn from teacher_info) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
 								while($row=oci_fetch_array($stid)){
 									//var_dump($row);
-									echo '<tr><td>'.($tealines+1).'</td>
-									<td>'.$row['0'].'</td>
-									<td>'.$row['1'].'</td>
-									<td><button type="button" class="badge pull-right" onclick="updateuser(this)" id="'.$tealines.'">修改</button></td>
-									<td><button type="button" class="badge pull-right" id="'.$tea_del_lines.'" onclick="deluser(this)">删除</button></td></tr>
+									echo '<tr class="gradeX>
+										<td>'.($tealines+1).'</td>
+										<td>'.$row['0'].'</td>
+										<td>'.$row['1'].'</td>
+										<td>
+											
+											<div class="tpl-table-black-operation">
+											<a href="javascript:;" onclick="updateuser(this)" id="'.$tealines.'">
+												<i class="am-icon-pencil"></i> 修改
+											</a>
+											</div>
+										</td>
+										<td>
+										<button type="button" class="badge pull-right" id="'.$tea_del_lines.'" onclick="deluser(this)">删除</button>
+										</td>
+									</tr>
 									<a id="teaid'.$tealines.'" style="display:none">'.$row['0'].'</a>
 									<a id="teaname'.$tealines.'" style="display:none">'.$row['1'].'</a>
 									<a id="teapwd'.$tealines.'" style="display:none">'.$row['3'].'</a>';
