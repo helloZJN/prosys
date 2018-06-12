@@ -1,9 +1,11 @@
 <?php 
+	header("Content-type:text/html;charset=utf-8");
 	$userid=$_POST['userid'];
 	$table=$_POST['table'];
 	$username=$_POST['username'];
 	$userpwd=$_POST['userpwd'];
-	header("Content-type:text/html;charset=utf-8");
+	// echo "$userid $table $username $userpwd";
+	
 	include_once('conn/Oracle_oci.class.php');
 	$dbe=new Oracle_oci();
 	$dbe->conn();

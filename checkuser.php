@@ -22,11 +22,9 @@
 
 	if($dbe->conn){
 		$sql_re=$dbe->select($sql_op);
-		if($sql_re){
+		if($row=oci_fetch_array($sql_re)){
 			if($usertype!='admin'){
-				while($row=oci_fetch_array($sql_re)){
-					$username=$row['1'];
-				}
+				$username=$row['1'];
 				$_SESSION['username']=$username;
 			}	else {
 				$_SESSION['username']='admin';
