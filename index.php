@@ -216,10 +216,10 @@
 						userSelect:userSelect},
 					success: function(res) {
 						if(res=="n"){
-							$("#register-msg").css('visibility', 'visible');
-							$("#register-msg").html("账号或密码错误");
+							$("#login-msg").css('visibility', 'visible');
+							$("#login-msg").html("账号或密码错误");
 						}else if(res=="y"){
-							$("#register-msg").css('visibility', 'hidden');
+							$("#login-msg").css('visibility', 'hidden');
 							window.location.href="main.php";
 						}else{
 							alert(res);

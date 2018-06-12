@@ -107,7 +107,12 @@
                                 <a href="#" onclick="get_make_dir(this)" class="fon">文件夹</a>
                             </li>':""; 
                 ?>
-
+                <?php echo ($_SESSION['usertype']!='admin')?'
+                            <li class="sidebar-nav-link">
+                                <a href="#" onclick="get_per_info(this)" class="fon">个人信息</a>
+                            </li>':""; 
+                ?>
+                
                 <?php echo ($_SESSION['usertype']=='admin')?'
                             <li class="sidebar-nav-link">
                                 <a href="#" onclick="get_user_manager(this) class="fon">用户管理</a>
