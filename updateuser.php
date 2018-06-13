@@ -10,11 +10,12 @@
 	$dbe=new Oracle_oci();
 	$dbe->conn();
 	if($dbe->conn){
-		$dbe->delete('delete from '.$table.' where '.($table=="student"?"stuid":"teaid")." =".$userid);
 		if($table=="student"){
-			$dbe->insert("insert into ".$table." (stuid,stuname,password) values('".$userid."','".$username."','".$userpwd."')");
+			$op="update ".$table." set stuname = '".$username."' , password= '".$userpwd."' where stuid = '".$userid."'";
+			$dbe->update($op);
 		}else {
-			$dbe->insert("insert into ".$table." (teaid,teaname,password) values('".$userid."','".$username."','".$userpwd."')");
+			$op="update ".$table." set teaname = '".$username."' , password = '".$userpwd."' where teaid = '".$userid."'";
+			$dbe->update($op);
 		}
 		
 		$dbe->close();

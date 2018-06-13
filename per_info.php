@@ -76,7 +76,7 @@
 	function submit_update(){
 		if($("#userpwd").val()<6){
 			alert('密码要不少于6位');
-			
+			return false;
 		}
 		$.ajax({
 			type: "POST",

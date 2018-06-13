@@ -1,4 +1,4 @@
-CONN sys/change_on_install AS SYSDBA ;
+CONN sys/change_on_install AS SYSDBA;
 -- 创建c##scott用户
 CREATE USER c##scott IDENTIFIED BY tiger ;
 -- 为用户授权
@@ -31,7 +31,8 @@ create table info(
 	title varchar(50),
 	content varchar(2000),
 	infotime date,
-	readtimes int
+	readtimes int,
+	CONSTRAINT fk_column1 FOREIGN KEY  (teaid) REFERENCES teacher_info(teaid)
 );
 create table stufile(
 	fileid varchar(2000) primary key,
@@ -47,35 +48,30 @@ create table folder(
 	teaid varchar(20)
 );
 
-insert into admin values('000000','0');
-insert into admin values('000001','1');
-insert into admin values('000002','2');
-insert into admin values('000003','3');
+insert into admin values('000000','0000000');
 
 alter session set nls_date_format = 'yyyy-mm-dd hh24:mi:ss';
 
-insert into info values('1','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('2','lh','0000','关于张晋男小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('3','lh','0000','关于童冰小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('4','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('5','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('2','lh','0000','关于张晋男小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('3','lh','0000','关于童冰小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('4','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('5','lh','0000','关于邱盼威小组的加分情况的通知','qwqeqe', to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
 
-insert into teacher_info (teaid,teaname,password) values('123456','李华','123456');
+
 insert into teacher_info (teaid,teaname,password) values('111111','李发','123456');
-insert into teacher_info (teaid,teaname,password) values('222222','李啊','123456');
-insert into teacher_info (teaid,teaname,password) values('333333','李来','123456');
-insert into teacher_info (teaid,teaname,password) values('444444','李有','123456');
-insert into teacher_info (teaid,teaname,password) values('555555','李怕','123456');
+insert into teacher_info (teaid,teaname,password) values('222222','张杰','123456');
+insert into teacher_info (teaid,teaname,password) values('333333','赵来','123456');
+insert into teacher_info (teaid,teaname,password) values('444444','周有','123456');
+insert into teacher_info (teaid,teaname,password) values('555555','张怕','123456');
+insert into teacher_info (teaid,teaname,password) values('666666','李华','123456');
 
-insert into student (stuid,stuname,password) values('123456','王华','123456');
-insert into student (stuid,stuname,password) values('111111','王发','123456');
-insert into student (stuid,stuname,password) values('222222','王啊','123456');
-insert into student (stuid,stuname,password) values('333333','王来','123456');
-insert into student (stuid,stuname,password) values('444444','王有','123456');
-insert into student (stuid,stuname,password) values('555555','王怕','123456');
+insert into student (stuid,stuname,password) values('1829220001','郑宇','123456');
+insert into student (stuid,stuname,password) values('1829220002','云丁畅','123456');
+insert into student (stuid,stuname,password) values('1829220003','方春米','123456');
+insert into student (stuid,stuname,password) values('1829220004','王来','123456');
+insert into student (stuid,stuname,password) values('1829220005','康畅','123456');
+insert into student (stuid,stuname,password) values('1829220006','姚加一','123456');
+
+insert into info values('1','邱盼威','111111','关于邱盼威小组的加分情况的通知','邱盼威100分', to_date ( '07-12-2020 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('2','张晋南','111111','关于张晋南小组的加分情况的通知','张晋南100分', to_date ( '07-12-2020 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('3','童冰','111111','关于童冰小组的加分情况的通知','童冰100分', to_date ( '07-12-2020 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+insert into info values('4','周瑾','111111','关于周瑾小组的加分情况的通知','周瑾100分', to_date ( '07-12-2020 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
+
 
 commit;

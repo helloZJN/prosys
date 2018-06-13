@@ -1,7 +1,7 @@
 
 <div class="widget-head am-cf">
 	<div class="widget-title am-fl"><span style="font-size: 30px">
-		帮助
+		帮助我们-微信
 	</span></div>
 </div>
 
@@ -14,12 +14,9 @@
 				</div>
 				<div class="widget-statistic-body">
 					<div class="widget-statistic-value">
-						邱盼威
+						邱盼威<SMALL>585619</SMALL>
 					</div>
-					<div class="widget-statistic-description">
-						<strong>585619</strong>
-					</div>
-					<span class="widget-statistic-icon am-icon-support"></span>
+					<img src="imgs/qpw.png" width="70%">
 				</div>
 			</div>
 		</div>
@@ -30,12 +27,9 @@
 				</div>
 				<div class="widget-statistic-body">
 					<div class="widget-statistic-value">
-						张晋南
+						张晋南<SMALL>585585</SMALL>
 					</div>
-					<div class="widget-statistic-description">
-						<strong>585585</strong>
-					</div>
-					<span class="widget-statistic-icon am-icon-support"></span>
+					<img src="imgs/zjn.png" width="70%" height="70%">
 				</div>
 			</div>
 		</div>
