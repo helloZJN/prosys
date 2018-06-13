@@ -8,14 +8,14 @@
 	<div class="widget-title am-fl" style="font-size: 30px">文件夹</div>
 </div>
 <div class="widget-body am-fr">
-	<div class="col-md-8" style="left:15%;">
+	<div class="col-md-8" ">
 	<form class="am-form tpl-form-line-form" class="col-md-8">
 		<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
         	<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-	            <input type="text" class="am-form-field " style="width: 200px" id="foldername">
+	            <input type="text" class="am-form-field " id="foldername">
 	            <span class="am-input-group-btn">
 	                <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" 
-	                onclick="make_dir(this)" type="button">创建新文件夹</button>
+	                onclick="make_dir(this)" type="button">创建</button>
 	            </span>
 	        </div>
 	        <small>输入新文件夹名</small>
@@ -23,7 +23,7 @@
 	    <div class="am-u-sm-12 am-u-md-12 am-u-lg-6">
 		    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
 	            <div class="am-form-group tpl-table-list-select" >
-	                <select  style="width: 200px" id="folder-select" onchange="selectchange()">
+	                <select id="folder-select" onchange="selectchange()">
 	                <option value="" selected disabled></option>
 		                <?php 
 			            	$dbe=new Oracle_oci();
@@ -51,9 +51,9 @@
 	<div class="widget-title am-fl" style="font-size: 30px">文件操作</div>
 </div>
 <div class="widget-body am-fr">
-	<div class="col-md-8" style="left:15%;">
+	<div class="col-md-8" ">
 	<form class="am-form tpl-form-line-form" class="col-md-8">
-	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" width="100%">
+	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" >
 		<thead>
 			<tr>
 				<th width="50%">文件名</th>

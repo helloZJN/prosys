@@ -13,7 +13,7 @@
 	<div class="widget-title am-fl"><span style="font-size: 30px">发布公告</span></div>
 </div>
 <div class="widget-body am-fr">
-	<div class="col-md-8" style="left:15%;">
+	<div class="col-md-8" ">
 	<form class="am-form tpl-form-line-form" class="col-md-8">
 		<div class="am-form-group">
 			<label for="user-name" class="am-u-sm-3 am-form-label">标题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

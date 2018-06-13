@@ -43,8 +43,14 @@
             <div class="am-fl tpl-header-logo">
                 <a href="javascript:;"><img src="imgs/logo.png" alt=""></a>
             </div>
+
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
+                <!-- 侧边切换 -->
+                <div class="am-fl tpl-header-switch-button am-icon-list">
+                    <span>
+                    </span>
+                </div>
                 <div class="am-fr tpl-header-navbar">
                     <ul>
                         <!-- 欢迎语 -->
@@ -62,103 +68,103 @@
             </div>
         </header>
         
-        <div class="row">
-            <div class="left-sidebar">
-                <!-- 用户信息 -->
-                <div class="tpl-sidebar-user-panel">
-                    <div class="tpl-user-panel-slide-toggleable">
-                        <div class="tpl-user-panel-profile-picture">
-                            <img src="assets/img/user04.png" alt="">
-                        </div>
-                        <span class="user-panel-logged-in-text">
-                          <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-                          <?php echo $_SESSION['username']=="admin"?"admin":$_SESSION['username']; ?>
-                      </span>
-                  </div>
-                </div>
-
-              <!-- 菜单 -->
-                <ul class="sidebar-nav">
-
-                <li class="sidebar-nav-link">
-                    <a href="main.php" class="fon">首页</a>
-                </li>
-
-                <?php echo ($_SESSION['usertype']=='teacher_info')?'
-                            <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_deliver_notice(this)" class="fon">发布公告</a>
-                            </li>':""; 
-                ?>
-
-                <?php echo ($_SESSION['usertype']=='student')?'
-                            <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_submit_work(this)" class="fon">提交作业</a>
-                            </li>':""; 
-                ?>
-
-                <?php echo ($_SESSION['usertype']=='student')?'
-                            <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_watch_work(this)" class="fon">查看作业</a>
-                            </li>':""; 
-                ?>
-
-                <?php echo ($_SESSION['usertype']=='teacher_info')?'
-                            <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_make_dir(this)" class="fon">文件夹</a>
-                            </li>':""; 
-                ?>
-                <?php echo ($_SESSION['usertype']!='admin')?'
-                            <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_per_info(this)" class="fon">个人信息</a>
-                            </li>':""; 
-                ?>
-                
-                <?php echo ($_SESSION['usertype']=='admin')?'
-                            <li class="sidebar-nav-link">
-                                <a href="#" onclick="get_user_manager(this)" class="fon">用户管理</a>
-                            </li>':""; 
-                ?>
-
-                <li class="sidebar-nav-link">
-                    <a href="#" onclick="get_help(this)" class="fon">帮助</a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <div style="padding-top: 500px">
-                </li>
-
-                </ul>
+        
+        <div class="left-sidebar">
+            <!-- 用户信息 -->
+            <div class="tpl-sidebar-user-panel">
+                <div class="tpl-user-panel-slide-toggleable">
+                    <div class="tpl-user-panel-profile-picture">
+                        <img src="assets/img/user04.png" alt="">
+                    </div>
+                    <span class="user-panel-logged-in-text">
+                      <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
+                      <?php echo $_SESSION['username']=="admin"?"admin":$_SESSION['username']; ?>
+                  </span>
+              </div>
             </div>
 
-            <div class="tpl-content-wrapper" >
-                <div class="row-content am-cf">
-                    <div class="mar">
-                    <div class="widget am-cf">
-                        <div class="widget-body">
-                            <div class="tpl-page-state">          
-                                <?php 
-                                    $content = isset($_GET['content']) ? trim(strtolower($_GET['content'])) : "notice";
-                                    $allowedPages = array(
-                                        'notice'     => 'notice.php',
-                                        'about'    => 'about.php',
-                                        'delivernotice' => 'deliver_notice.php',
-                                        'submit_work' => 'submit_work.php',
-                                        'watch_work' => 'watch_work.php',
-                                        'tea_dir' => 'tea_dir.php',
-                                        'per_info' => 'per_info.php',
-                                        'user_manager' => 'user_manager.php'
-                                    );
-                                    include(isset($allowedPages[$content]) ? $allowedPages[$content] : $allowedPages["notice"]);
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
+          <!-- 菜单 -->
+            <ul class="sidebar-nav">
 
+            <li class="sidebar-nav-link">
+                <a href="main.php" class="fon">首页</a>
+            </li>
 
+            <?php echo ($_SESSION['usertype']=='teacher_info')?'
+                        <li class="sidebar-nav-link">
+                            <a href="#" onclick="get_deliver_notice(this)" class="fon">发布公告</a>
+                        </li>':""; 
+            ?>
+
+            <?php echo ($_SESSION['usertype']=='student')?'
+                        <li class="sidebar-nav-link">
+                            <a href="#" onclick="get_submit_work(this)" class="fon">提交作业</a>
+                        </li>':""; 
+            ?>
+
+            <?php echo ($_SESSION['usertype']=='student')?'
+                        <li class="sidebar-nav-link">
+                            <a href="#" onclick="get_watch_work(this)" class="fon">查看作业</a>
+                        </li>':""; 
+            ?>
+
+            <?php echo ($_SESSION['usertype']=='teacher_info')?'
+                        <li class="sidebar-nav-link">
+                            <a href="#" onclick="get_make_dir(this)" class="fon">文件夹</a>
+                        </li>':""; 
+            ?>
+            <?php echo ($_SESSION['usertype']!='admin')?'
+                        <li class="sidebar-nav-link">
+                            <a href="#" onclick="get_per_info(this)" class="fon">个人信息</a>
+                        </li>':""; 
+            ?>
+            
+            <?php echo ($_SESSION['usertype']=='admin')?'
+                        <li class="sidebar-nav-link">
+                            <a href="#" onclick="get_user_manager(this)" class="fon">用户管理</a>
+                        </li>':""; 
+            ?>
+
+            <li class="sidebar-nav-link">
+                <a href="#" onclick="get_help(this)" class="fon">帮助</a>
+            </li>
+            <li class="sidebar-nav-link">
+                <div style="padding-top: 500px">
+            </li>
+
+            </ul>
         </div>
+
+        <div class="tpl-content-wrapper" >
+            <div class="row-content am-cf">
+                <div>
+                <div class="widget am-cf">
+                    <div class="widget-body">
+                        <div class="tpl-page-state">          
+                            <?php 
+                                $content = isset($_GET['content']) ? trim(strtolower($_GET['content'])) : "notice";
+                                $allowedPages = array(
+                                    'notice'     => 'notice.php',
+                                    'about'    => 'about.php',
+                                    'delivernotice' => 'deliver_notice.php',
+                                    'submit_work' => 'submit_work.php',
+                                    'watch_work' => 'watch_work.php',
+                                    'tea_dir' => 'tea_dir.php',
+                                    'per_info' => 'per_info.php',
+                                    'user_manager' => 'user_manager.php'
+                                );
+                                include(isset($allowedPages[$content]) ? $allowedPages[$content] : $allowedPages["notice"]);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+  
 
     <script type="text/javascript">
         function get_notice(argument) {
@@ -188,6 +194,7 @@
     </script>
     <script src="bootstrap/js/jquery-1.11.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
+    
+    <script src="assets/js/app.js"></script>
 </body>
 </html>

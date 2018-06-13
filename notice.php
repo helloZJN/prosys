@@ -4,7 +4,7 @@
 </div>
 <div style="padding-top: 25px"></div>
 <div class="row" >     
-	<div class="col-md-8" style="left:15%;">
+	<div class="col-md-8" >
 		<table class="am-table am-table-compact am-table-striped tpl-table-black " width="100%">
 			<thead>
 				<tr>
@@ -82,9 +82,9 @@
     </div>	
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top: 50px">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top: 30px">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width: 1000px">
+    <div class="modal-content">
       <div class="modal-header" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel" style="color:#000000;font-size: 30px;" align="center">公告</h4>

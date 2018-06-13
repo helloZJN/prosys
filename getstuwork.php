@@ -26,10 +26,10 @@ if($dbe->conn){
 							<a id="del'.$numfile.'" onclick="deletefile(this)" class="tpl-table-black-operation-del">
 								<i class="am-icon-trash"></i> 删除
 							</a>
-							<a style="display:none" id="namefile'.$numfile.'">'.$row['0'].'</a>
-							<a style="display:none" id="pathfile'.$numfile.'">'.$row['5'].'</a>
-							<a style="display:none" id="namedel'.$numfile.'">'.$row['0'].'</a>
-							<a style="display:none" id="pathdel'.$numfile.'">'.$row['5'].'</a>
+							<span style="display:none" id="namefile'.$numfile.'">'.$row['0'].'</span>
+							<span style="display:none" id="pathfile'.$numfile.'">'.$row['5'].'</span>
+							<span style="display:none" id="namedel'.$numfile.'">'.$row['0'].'</span>
+							<span style="display:none" id="pathdel'.$numfile.'">'.$row['5'].'</span>
 						</div>
 					</td>
 				</tr>
