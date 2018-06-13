@@ -24,9 +24,9 @@
 			<table class="am-table am-table-compact am-table-striped tpl-table-black " width="100%" >
 				<thead>
 					<tr>
-						<th width="10%">#</th>
-						<th width="40%">工号</th>
-						<th width="20%">姓名</th>
+						<th>#</th>
+						<th>工号</th>
+						<th>姓名</th>
 						<th>修改</th>
 						<th>删除</th>
 					</tr>
