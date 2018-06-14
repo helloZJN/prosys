@@ -211,7 +211,7 @@
 							$("#login-msg").html("账号或密码错误");
 						}else if(res=="y"){
 							$("#login-msg").css('visibility', 'hidden');
-							window.location.href="main.php";
+							window.location.href="mpmain.php";
 						}else{
 							alert(res);
 						}
