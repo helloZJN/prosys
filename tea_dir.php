@@ -50,7 +50,7 @@
 <div class="widget-head am-cf" >
 	<div class="widget-title am-fl" style="font-size: 30px">文件操作</div>
 </div>
-<div class="widget-body am-fr">
+<div  class="row" >
 	<div class="col-md-8" ">
 	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" >
 		<thead>

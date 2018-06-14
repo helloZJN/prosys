@@ -8,7 +8,7 @@
 	<div class="widget-title am-fl"><span style="font-size: 30px">查看作业</span></div>
 </div>
 
-<div class="widget-body am-fr">
+<div  class="row" >
 	<div class="col-md-8" ">
 	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" width="100%">
 		<thead>
