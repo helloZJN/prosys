@@ -14,8 +14,8 @@
 	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" width="100%">
 		<thead>
 			<tr>
-				<th width="50%">文件名</th>
-				<th width="20%">作者</th>
+				<th>文件名</th>
+				<th>作者</th>
 				<th>操作</th>
 			</tr>
 		</thead>
