@@ -52,7 +52,6 @@
 </div>
 <div class="widget-body am-fr">
 	<div class="col-md-8" ">
-	<form class="am-form tpl-form-line-form" class="col-md-8">
 	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" >
 		<thead>
 			<tr>
@@ -66,7 +65,6 @@
 		</tbody>
 
 	</table>
-	</form>
 	</div>
 </div>
 
