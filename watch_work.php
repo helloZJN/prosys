@@ -9,7 +9,7 @@
 </div>
 
 <div  class="row" >
-	<div class="col-md-8" ">
+	<div class="col-md-8">
 	<table class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r" width="100%">
 		<thead>
 			<tr>
