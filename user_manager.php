@@ -237,7 +237,8 @@
 						table:user_table},
 					success: function(res) {
 						if(res=="yes"){
-							window.location.href="http://127.0.0.1/prosys/main.php?content=user_manager";
+							window.location.href="main.php?content=user_manager";
+							alert("删除成功！");
 						}else {
 							alert("删除失败！");
 						}

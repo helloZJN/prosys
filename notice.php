@@ -69,10 +69,10 @@
 						<ul class="am-pagination tpl-pagination">';
 				echo '<li><a href="main.php?content=notice&page=1">首页</a></li>';
 				echo $page!=1?'<li><a href="main.php?content=notice&page='.($page-1).'">上一页</a></li>':
-					'<li class="am-disabled"><a href="main.php?content=notice&page='.($page-1).'">上一页</a></li>';
+					'<li class="am-disabled"><a href="main.php?content=notice&page='.($page).'">上一页</a></li>';
 				echo $page!=$pagecount?'<li><a href="main.php?content=notice&page='.($page+1).'">下一页</a></li>':
-					'<li class="am-disabled"><a href="main.php?content=notice&page='.($page+1).'">下一页</a></li>';
-				echo '<li><a href="main.php?content=notice&page='.$pagecount.'">末页</a></li>';
+					'<li class="am-disabled"><a href="main.php?content=notice&page='.($page).'">下一页</a></li>';
+				echo '<li><a href="main.php?content=notice&page='.($pagecount).'">末页</a></li>';
 			echo '		</ul>
 					</div>
 				</div>

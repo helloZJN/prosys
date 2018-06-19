@@ -148,8 +148,8 @@
                                     'about'    => 'about.php',
                                     'delivernotice' => 'deliver_notice.php',
                                     'submit_work' => 'submit_work.php',
-                                    'watch_work' => 'watch_work.php',
-                                    'tea_dir' => 'tea_dir.php',
+                                    'watch_work' => 'mpwatch_work.php',
+                                    'tea_dir' => 'mptea_dir.php',
                                     'per_info' => 'per_info.php',
                                     'user_manager' => 'user_manager.php'
                                 );
@@ -168,28 +168,28 @@
 
     <script type="text/javascript">
         function get_notice(argument) {
-            window.location='main.php?content=notice';
+            window.location='mpmain.php?content=notice';
         }
         function get_help(argument) {
-            window.location='main.php?content=about';
+            window.location='mpmain.php?content=about';
         }
         function get_user_manager(argument) {
-            window.location='main.php?content=user_manager';
+            window.location='mpmain.php?content=user_manager';
         }
         function get_per_info(argument) {
-            window.location='main.php?content=per_info';
+            window.location='mpmain.php?content=per_info';
         }
         function get_make_dir(argument) {
-            window.location='main.php?content=tea_dir';
+            window.location='mpmain.php?content=tea_dir';
         }
         function get_watch_work(argument) {
-            window.location='main.php?content=watch_work';
+            window.location='mpmain.php?content=watch_work';
         }
         function get_submit_work(argument) {
-            window.location='main.php?content=submit_work';
+            window.location='mpmain.php?content=submit_work';
         }
         function get_deliver_notice(argument) {
-            window.location='main.php?content=delivernotice';
+            window.location='mpmain.php?content=delivernotice';
         }
     </script>
     <script src="bootstrap/js/jquery-1.11.1.min.js"></script>

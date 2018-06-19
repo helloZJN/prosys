@@ -1,4 +1,5 @@
 <?php 
+	session_start();
 	if(($_SESSION['usertype'])!='admin'){
 		echo "<script>alert('你没有权限进入该页面！即将跳转到登陆界面');window.location.href='index.php';</script>";
 	}
@@ -9,7 +10,7 @@
 	$dbe=new Oracle_oci();
 	$dbe->conn();
 	if($dbe->conn){
-		$dbe->delete('delete from '.$table.' where '.($table=="student"?"stuid":"teaid")." =".$userid);
+		$dbe->delete('delete from '.$table.' where '.($table=="student"?"stuid":"teaid")." ='".$userid."'");
 		$dbe->close();
 		echo "yes";
 	}else {

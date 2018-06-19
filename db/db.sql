@@ -31,8 +31,7 @@ create table info(
 	title varchar(50),
 	content varchar(2000),
 	infotime date,
-	readtimes int,
-	CONSTRAINT fk_column1 FOREIGN KEY  (teaid) REFERENCES teacher_info(teaid)
+	readtimes int
 );
 create table stufile(
 	fileid varchar(2000) primary key,
@@ -68,10 +67,8 @@ insert into student (stuid,stuname,password) values('1829220004','王来','12345
 insert into student (stuid,stuname,password) values('1829220005','康畅','123456');
 insert into student (stuid,stuname,password) values('1829220006','姚加一','123456');
 
-insert into info values('1','邱盼威','111111','关于邱盼威小组的加分情况的通知','邱盼威100分', to_date ( '07-12-2020 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('2','张晋南','111111','关于张晋南小组的加分情况的通知','张晋南100分', to_date ( '07-12-2020 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('3','童冰','111111','关于童冰小组的加分情况的通知','童冰100分', to_date ( '07-12-2020 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-insert into info values('4','周瑾','111111','关于周瑾小组的加分情况的通知','周瑾100分', to_date ( '07-12-2020 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ),100);
-
 
 commit;
+
+
+CONSTRAINT fk_column1 FOREIGN KEY  (teaid) REFERENCES teacher_info(teaid)
