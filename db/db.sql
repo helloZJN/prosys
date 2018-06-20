@@ -44,10 +44,26 @@ create table stufile(
 create table folder(
 	foldid varchar(20) primary key,
 	foldname varchar(20),
-	teaid varchar(20)
+	teaid varchar(20),
+	CONSTRAINT fk_column1 FOREIGN KEY  (teaid) REFERENCES teacher_info(teaid)
 );
 
-insert into admin values('000000','0000000');
+
+create sequence seq_m 
+increment by 1 
+start with 1  
+nomaxvalue  
+nominvalue  
+nocache;
+
+Create Trigger m_test Before Insert On info
+For Each Row 
+Begin 
+Select seq_cdpt.nextval Into:new.infoid From dual;  
+End;  
+
+
+insert into admin values('000000','000000');
 
 alter session set nls_date_format = 'yyyy-mm-dd hh24:mi:ss';
 
@@ -71,4 +87,3 @@ insert into student (stuid,stuname,password) values('1829220006','姚加一','12
 commit;
 
 
-CONSTRAINT fk_column1 FOREIGN KEY  (teaid) REFERENCES teacher_info(teaid)

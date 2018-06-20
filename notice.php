@@ -8,6 +8,7 @@
 		<table class="am-table am-table-compact am-table-striped tpl-table-black " width="100%">
 			<thead>
 				<tr>
+					<th>#</th>
 					<th width="50%">文章标题</th>
 					<th width="20%">作者</th>
 					<th>时间</th>
@@ -28,14 +29,20 @@
 						$pagecount=ceil($totalnum/$pagesize);//总页数
 						$lines=0;
 						$lilines=0;
-						$stid=$dbe->select("select a1.* from (select info.*,rownum rn from info order by info.infotime desc) a1 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
+						$stid=$dbe->select("select a2.* from(select a1.*,rownum rn from (select info.* from info order by info.infoid desc)a1)a2 where rn between ".(($page-1)*$pagesize+1)." and ".$page*$pagesize);
 						while($row=oci_fetch_row($stid)){
 							//var_dump($row);
+							$time=explode("-",$row['5'],3);
+							$y=$time[2];
+							$m=substr($time[1],0,strlen($time[1])-4);
+							$d=$time[0];
+							$mytime="20$y/$m/$d";
 							echo '
 							<tr class="gradeX">
+								<td>'.$row['0'].'</td>
 								<td>'.$row['3'].'</td>
 								<td>'.$row['1'].'</td>
-								<td>20'.$row['5'].'日</td>
+								<td>'.$mytime.'</td>
 								<td>
 									<div class="tpl-table-black-operation">
 										<a href="javascript:;" onclick="getmodal(this)" id="'.$lines.'">
@@ -52,7 +59,7 @@
 							<span id="teaid'.$lines.'" style="display:none">'.$row['2'].'</span>
 							<span id="title'.$lines.'" style="display:none">'.$row['3'].'</span>
 							<span id="content'.$lines.'" style="display:none">'.$row['4'].'</span>
-							<span id="infotime'.$lines.'" style="display:none">'.$row['5'].'</span>
+							<span id="infotime'.$lines.'" style="display:none">'.$mytime.'</span>
 							';
 							$lines=$lines+1;
 							$lilines=$lilines+1;
@@ -114,7 +121,7 @@
 		infotime=$(infotime).text();
 
 		$("#myModalLabel").text(title);
-		$("#notice-user-date").html("作者:"+teaname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期:20"+infotime+"日");
+		$("#notice-user-date").html("作者:"+teaname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期:"+infotime);
 		$("#notice-content").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+content);
 
 		$('#myModal').modal({
